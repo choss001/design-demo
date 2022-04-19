@@ -23,4 +23,9 @@ class ForkJoinSumCalculatorTest {
     return end - start;
   }
 
+  @Test
+  void future(){
+
+  }
+
 }
