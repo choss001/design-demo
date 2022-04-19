@@ -2,12 +2,23 @@ package com.example.demo.future;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 import static com.example.demo.future.DelayUtil.delay;
+import static java.util.stream.Collectors.*;
+import static org.assertj.core.util.Arrays.asList;
+import static org.assertj.core.util.Arrays.prepend;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShopTest {
+
+  List<Shop> shops = Arrays.asList(new Shop("BestPrice"),
+          new Shop("MyFavoriteShop"),
+          new Shop("LetsSaveBig"),
+          new Shop("BuyItAll"));
 
   @Test
   void test() {
@@ -30,6 +41,26 @@ class ShopTest {
 
   private void doSomethingElse(){
     delay();
+  }
+
+  @Test
+  void parallelStreamTest() {
+    long start = System.nanoTime();
+    findPrices("myPhone275");
+    System.out.println(findPrices("myPhone275"));
+    long duration = (System.nanoTime() - start) / 1_000_000;
+    System.out.println("Done in " + duration + " msecs");
+  }
+
+  private List<String> findPrices(String product) {
+    return shops.parallelStream().map(shop -> String.format("%s price is %.2f",
+                    shop.getName(), shop.getPrice(product)))
+            .collect(toList());
+  }
+
+  @Test
+  void parallelStreamTest1() {
+    shops.stream().forEach(i -> System.out.println("test : "+ i.getName() + " ??? : " + i.getPriceAsync("product")));
   }
 
 }
