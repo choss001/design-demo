@@ -24,7 +24,12 @@ public class Shop {
     return CompletableFuture.supplyAsync(() -> calculatePrice(product));
   }
 
-  public String getPrice(String product){
+  public double getPrice(String product){
+    double price = calculatePrice(product);
+    Discount.Code code = Discount.Code.values()[random.nextInt(Discount.Code.values().length)];
+    return calculatePrice(product);
+  }
+  public String getInfo(String product){
     double price = calculatePrice(product);
     Discount.Code code = Discount.Code.values()[random.nextInt(Discount.Code.values().length)];
     return String.format("%s:%.2f:%s", name, price, code);

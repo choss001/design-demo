@@ -13,6 +13,7 @@ public class FutureReflection {
   ExecutorService executor = Executors.newCachedThreadPool();
   final Future<Double> futureRate = executor.submit(new Callable<Double>(){
     public Double call() {
+      ExchangeService exchangeService = new ExchangeService();
       return exchangeService.getRate(Money.EUR, Money.USD);
     }
   });
@@ -22,7 +23,6 @@ public class FutureReflection {
     public Double call() throws Exception {
       double priceInEUR = shop.getPrice("product");
       return priceInEUR * futureRate.get();
-      return null;
     }
   });
 
@@ -39,4 +39,10 @@ public class FutureReflection {
   void futureReflection(){
 
   }
+  static class ExchangeService{
+    public Double getRate(Money eur, Money usd){
+      return 15d;
+    }
+  }
+
 }
