@@ -1,5 +1,7 @@
 package com.example.demo.future.asyncpipe;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Callable;
@@ -18,13 +20,13 @@ public class FutureReflection {
     }
   });
 
-  Future<Double> futurePriceInUSD = executor.submit(new Callable<Double>() {
-    @Override
-    public Double call() throws Exception {
-      double priceInEUR = shop.getPrice("product");
-      return priceInEUR * futureRate.get();
-    }
-  });
+  Future<Double> futurePriceInUSD = CompletableFuture.supplyAsync(() -> shop.getPrice("product"))
+    .thenCombine(
+      CompletableFuture.supplyAsync(
+        () -> new ExchangeService().getRate(Money.EUR, Money.USD)),
+      (price, rate) -> price * rate
+    )
+    .orTimeout(3, TimeUnit.SECONDS);
 
   public enum Money{
     EUR(5), USD(10);
