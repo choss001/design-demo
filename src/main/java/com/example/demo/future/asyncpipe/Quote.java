@@ -1,5 +1,7 @@
 package com.example.demo.future.asyncpipe;
 
+import com.example.demo.future.asyncpipe.Discount.Code;
+
 public class Quote {
   private final String shopName;
   private final double price;
@@ -19,6 +21,14 @@ public class Quote {
     return new Quote(shopName, price, discountCode);
   }
 
+  public static Quote doubleFromParse(double d) {
+//    String[] split = s.split(":");
+//    String shopName = split[0];
+//    double price = Double.parseDouble(split[1]);
+//    Discount.Code discountCode = Discount.Code.valueOf(split[2]);
+    return new Quote("ShopName", d, Code.GOLD);
+  }
+
   public String getShopName(){
     return shopName;
   }
@@ -29,4 +39,6 @@ public class Quote {
   public Discount.Code getDisCountcode() {
     return disCountcode;
   }
+
+
 }
