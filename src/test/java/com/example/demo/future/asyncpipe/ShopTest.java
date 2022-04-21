@@ -46,6 +46,10 @@ class ShopTest {
         .map(Discount::applyDiscount)
         .collect(toList());
   }
+  @Test
+  void test2(){
+    System.out.println(findPricesFuture("test"));
+  }
 
   private List<String> findPricesFuture(String product){
     List<CompletableFuture<String>> priceFutures =
