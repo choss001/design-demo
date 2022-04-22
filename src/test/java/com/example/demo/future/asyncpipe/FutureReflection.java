@@ -51,20 +51,18 @@ public class FutureReflection {
     return shops.stream()
       .map(shop -> CompletableFuture.supplyAsync(
         () -> shop.getPriceDouble(product), executor))
-      .peek(System.out::println)
       .map(future -> future.thenApply(Quote::doubleFromParse))
-      .peek(System.out::println)
       .map(future -> future.thenCompose(quote -> CompletableFuture.supplyAsync(
         () -> Discount.applyDiscount(quote), executor)))
-      .peek(System.out::println);
   }
 
 
   @Test
   void futureReflection(){
-    findPricesStream("myPhone")
-      .peek(System.out::println)
-      .map(f -> f.thenAccept(System.out::println));
+    CompletableFuture[] futures = findPricesStream("myPhone")
+        .map(f -> f.thenAccept(System.out::println))
+        .toArray(size -> new CompletableFuture[size]);
+    CompletableFuture.allOf(futures).join();
 
   }
   static class ExchangeService{
