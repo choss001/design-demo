@@ -1,6 +1,7 @@
 package com.example.demo.future.asyncpipe;
 
 import static com.example.demo.future.DelayUtil.delay;
+import static com.example.demo.future.DelayUtil.randomDelay;
 import static java.lang.String.*;
 
 public class Discount {
@@ -14,6 +15,7 @@ public class Discount {
 
   }
 
+  //
   public static String applyDiscount(Quote quote) {
     return quote.getShopName() + " price is " +
         Discount.apply(quote.getPrice(),
@@ -22,7 +24,7 @@ public class Discount {
   }
 
   private static String apply(double price, Code code) {
-    delay();
+    randomDelay();
     return String.valueOf(price * (100 -code.percentage) /  100);
   }
 }
