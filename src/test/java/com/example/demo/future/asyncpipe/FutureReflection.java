@@ -67,6 +67,7 @@ public class FutureReflection {
       .map(f -> f.thenAccept(System.out::println));
 
   }
+
   static class ExchangeService{
     public Double getRate(Money eur, Money usd){
       return 15d;

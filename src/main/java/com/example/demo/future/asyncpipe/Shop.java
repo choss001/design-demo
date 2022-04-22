@@ -13,7 +13,7 @@ public class Shop {
     this.name = name;
   }
 
-  private Random random=new Random();
+  private Random random = new Random();
   private String name;
 
   public String getName() {
