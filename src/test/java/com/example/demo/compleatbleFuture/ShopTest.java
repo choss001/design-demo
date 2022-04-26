@@ -23,7 +23,7 @@ class ShopTest {
       throw new RuntimeException(e);
     }
     long retrievalTime = ((System.nanoTime() - start) / 1_000_000);
-    log.info("Price returned after {} mescs", retrievalTime);
+    log.info("Price returned  after {} mescs", retrievalTime);
   }
 
   private void doSomethingElse() {

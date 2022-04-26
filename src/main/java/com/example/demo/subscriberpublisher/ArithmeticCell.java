@@ -1,4 +1,4 @@
-package subscriberpublisher;
+package com.example.demo.subscriberpublisher;
 
 public class ArithmeticCell extends SimpleCell{
 

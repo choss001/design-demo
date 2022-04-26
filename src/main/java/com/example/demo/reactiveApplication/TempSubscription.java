@@ -1,4 +1,4 @@
-package reactiveApplication;
+package com.example.demo.reactiveApplication;
 
 public class TempSubscription implements Subscription{
   private final Subscriber<? super TempInfo> subscriber;
@@ -13,7 +13,7 @@ public class TempSubscription implements Subscription{
   public void request(long n) {
     for (long i = 0L; i < n; i ++){
       try {
-
+        subscriber.onNext(TempInfo.fetch(town));
       } catch (Exception e) {
         subscriber.onError(e);
         break;

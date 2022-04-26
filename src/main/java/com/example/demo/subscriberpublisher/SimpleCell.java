@@ -1,8 +1,7 @@
-package subscriberpublisher;
+package com.example.demo.subscriberpublisher;
 
-import reactiveApplication.Subscription;
+import com.example.demo.reactiveApplication.Subscription;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +21,6 @@ public class SimpleCell implements Publisher<Integer>, Subscriber<Integer>{
   }
   private void notifyAllSubscribers() {
     subscribers.forEach(subscriber -> subscriber.onNext(this.value));
-  }
-
-  @Override
-  public void onSubscribe(Subscription subscription) {
-
   }
 
   @Override

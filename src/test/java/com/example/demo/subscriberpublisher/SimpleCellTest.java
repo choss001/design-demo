@@ -1,5 +1,7 @@
-package subscriberpublisher;
+package com.example.demo.subscriberpublisher;
 
+import com.example.demo.subscriberpublisher.ArithmeticCell;
+import com.example.demo.subscriberpublisher.SimpleCell;
 import org.junit.jupiter.api.Test;
 
 class SimpleCellTest {

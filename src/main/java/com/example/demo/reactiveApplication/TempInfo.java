@@ -1,4 +1,4 @@
-package reactiveApplication;
+package com.example.demo.reactiveApplication;
 
 import java.util.Random;
 
