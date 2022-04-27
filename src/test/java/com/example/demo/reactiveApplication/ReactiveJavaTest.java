@@ -11,9 +11,10 @@ class ReactiveJavaTest {
   }
 
   private Publisher<TempInfo> getTemperatures(String town) {
-    return subscriber -> subscriber.onSubscribe(
-        new TempSubscription(subscriber, town)
-      // 구독자의 구독중상태를 추가한다 (템프구독, 구독자정보, 지역) .
-    );
+    return subscriber -> {
+      TempProcessor processor = new TempProcessor();
+      processor.subscribe(subscriber);
+      processor.onSubscribe(new TempSubscription(processor, town));
+    };
   }
 }
