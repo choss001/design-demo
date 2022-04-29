@@ -1,7 +1,10 @@
 package com.example.demo.reactiveApplication;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Random;
 
+//@Slf4j
 public class TempInfo {
 
   public static final Random random = new Random();
@@ -22,6 +25,7 @@ public class TempInfo {
 
   @Override
   public String toString() {
+//    log.info("{} : {}", town, temp);
     return town + " : " + temp;
   }
 
