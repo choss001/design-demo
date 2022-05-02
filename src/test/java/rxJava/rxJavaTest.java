@@ -10,7 +10,8 @@ class rxJavaTest {
 
   @Test
   void test () {
-    Observable<TempInfo> observable = getTemperature("New York");
+//    Observable<TempInfo> observable = getTemperature("New York");
+    Observable<TempInfo> observable = getCelsiusTemperature("New York");
     observable.blockingSubscribe(new TempObserver());
   }
 
@@ -29,6 +30,11 @@ class rxJavaTest {
                   }
                 }
               }}));
+  }
+
+  private static Observable<TempInfo> getCelsiusTemperature(String town) {
+    return getTemperature(town)
+        .map(temp -> new TempInfo(temp.getTown(), (temp.getTemp() - 32 ) * 5 / 9));
   }
 
 }
