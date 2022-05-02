@@ -1,0 +1,34 @@
+package rxJava;
+
+import com.example.demo.reactiveApplication.*;
+import io.reactivex.rxjava3.core.Observable;
+import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.TimeUnit;
+
+class rxJavaTest {
+
+  @Test
+  void test () {
+    Observable<TempInfo> observable = getTemperature("New York");
+    observable.blockingSubscribe(new TempObserver());
+  }
+
+  public static Observable<TempInfo> getTemperature(String town) {
+    return Observable.create(emitter ->
+        Observable.interval(1, TimeUnit.SECONDS)
+            .subscribe(i -> {
+              if (!emitter.isDisposed()){
+                if(i >= 5){
+                  emitter.onComplete();
+                }else{
+                  try {
+                    emitter.onNext(TempInfo.fetch(town));
+                  }catch (Exception e){
+                    emitter.onError(e);
+                  }
+                }
+              }}));
+  }
+
+}
