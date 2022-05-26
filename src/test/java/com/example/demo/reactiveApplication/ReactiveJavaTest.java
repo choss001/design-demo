@@ -9,6 +9,7 @@ class ReactiveJavaTest {
   @Test
   void test () {
     getTemperatures("New York").subscribe(new TempSubscriber());
+    getTemperatures("Test").subscribe(new TempSubscriber());
   }
 
   private Publisher<TempInfo> getTemperatures(String town) {
