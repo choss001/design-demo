@@ -1,11 +1,9 @@
 import com.example.demo.member.Grade;
 import com.example.demo.member.Member;
 import com.example.demo.member.MemberService;
-import com.example.demo.member.MemberServiceImpl;
 import com.example.demo.order.AppConfig;
 import com.example.demo.order.Order;
 import com.example.demo.order.OrderService;
-import com.example.demo.order.OrderServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '15'
 
 configurations {
 	compileOnly {
@@ -28,10 +28,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'com.auth0', name: 'java-jwt', version: '3.18.1'
 	implementation group: 'io.reactivex.rxjava3', name: 'rxjava', version: '3.1.4'
-	// https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava
-//	implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.21'
-
-
+	implementation 'io.reactivex.rxjava3:rxjava:3.1.4'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 test {
