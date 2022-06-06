@@ -18,6 +18,7 @@ public class TempObservable extends Observable<TempInfo> {
         .map(temp -> new TempInfo(temp.getTown(), (temp.getTemp() - 32 ) * 5 / 9));
   }
 
+
   public static Observable<TempInfo> getTemperature(String town) {
     return Observable.create(emitter ->
         Observable.interval(1, TimeUnit.SECONDS)
