@@ -6,13 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
-import java.util.stream.Collectors;
 
 import static com.example.demo.future.DelayUtil.delay;
-import static java.util.stream.Collectors.*;
-import static org.assertj.core.util.Arrays.asList;
-import static org.assertj.core.util.Arrays.prepend;
-import static org.junit.jupiter.api.Assertions.*;
+import static java.util.stream.Collectors.toList;
 
 class ShopTest {
 
@@ -35,6 +31,8 @@ class ShopTest {
       return t;
     }
   });
+
+  private final static String PRODUCT = "product";
 
   @Test
   void test() {
@@ -119,6 +117,15 @@ class ShopTest {
   @Test
   void parallelStreamTest1() {
     shops.stream().forEach(i -> System.out.println("test : " + i.getName() + " ??? : " + i.getPriceAsync("product")));
+  }
+
+  @Test
+  void completableFuture() {
+    shops.stream()
+            .map(shop -> CompletableFuture.supplyAsync(
+                    () -> String.format("%s price is %.2f",
+                            shop.getName(), shop.getPrice(PRODUCT))))
+                    .collect(toList());
   }
 
 }
