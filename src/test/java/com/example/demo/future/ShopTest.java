@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
@@ -15,10 +16,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ShopTest {
 
-  List<Shop> shops = Arrays.asList(new Shop("BestPrice"),
+  private final static List<Shop> shops = Arrays.asList(new Shop("BestPrice"),
           new Shop("MyFavoriteShop"),
           new Shop("LetsSaveBig"),
           new Shop("BuyItAll"));
+
+  private final static String PRODUCT = "product";
 
   @Test
   void test() {
@@ -61,6 +64,15 @@ class ShopTest {
   @Test
   void parallelStreamTest1() {
     shops.stream().forEach(i -> System.out.println("test : "+ i.getName() + " ??? : " + i.getPriceAsync("product")));
+  }
+
+  @Test
+  void completableFuture() {
+    shops.stream()
+            .map(shop -> CompletableFuture.supplyAsync(
+                    () -> String.format("%s price is %.2f",
+                            shop.getName(), shop.getPrice(PRODUCT))))
+                    .collect(toList());
   }
 
 }
