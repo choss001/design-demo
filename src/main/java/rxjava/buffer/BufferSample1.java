@@ -1,7 +1,7 @@
-package rxjava.buffer;
+package rxJava.buffer;
 
 import io.reactivex.rxjava3.core.Flowable;
-import rxjava.DebugSubscriber;
+import rxJava.DebugSubscriber;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

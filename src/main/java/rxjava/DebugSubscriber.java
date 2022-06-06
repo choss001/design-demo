@@ -1,4 +1,4 @@
-package rxjava;
+package rxJava;
 
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber;
 
@@ -28,9 +28,9 @@ public class DebugSubscriber <T> extends DisposableSubscriber<T> {
     public void onError(Throwable throwable) {
         String threadName = Thread.currentThread().getName();
         if (label == null) {
-            System.out.println(threadName + ": 에러 = " + throwable);
+            System.out.println(threadName + ": ERORR! = " + throwable);
         }else {
-            System.out.println(threadName + ": " + label + ": 에러 = " + throwable);
+            System.out.println(threadName + ": " + label + ": ERORR! = " + throwable);
         }
 
     }
@@ -39,9 +39,9 @@ public class DebugSubscriber <T> extends DisposableSubscriber<T> {
     public void onComplete() {
         String threadName = Thread.currentThread().getName();
         if (label == null) {
-            System.out.println(threadName + ": 완료");
+            System.out.println(threadName + ": COMPLETE!");
         }else {
-            System.out.println(threadName + ": " + label + ": 완료");
+            System.out.println(threadName + ": " + label + ": COMPLETE!");
         }
 
     }
