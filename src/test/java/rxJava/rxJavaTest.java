@@ -2,13 +2,18 @@ package rxJava;
 
 import com.example.demo.reactiveApplication.*;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toList;
 
+@Slf4j
 class rxJavaTest {
 
   @Test
@@ -47,6 +52,16 @@ class rxJavaTest {
     return Observable.merge(Arrays.stream(towns)
         .map(TempObservable::getCelsiusTemperature)
         .collect(toList()));
+  }
+
+  @Test
+  void test2() {
+    List<Integer> list = new ArrayList<>();
+    Disposable subscribe = Observable.just(1, 2, 3, 4)
+            .doOnNext(System.out::println)
+            .subscribe(list::add);
+    log.info("test : {}", list);
+
   }
 
 }
