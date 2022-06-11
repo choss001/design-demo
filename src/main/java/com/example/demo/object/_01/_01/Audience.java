@@ -1,4 +1,4 @@
-package com.example.demo.object._01_._01;
+package com.example.demo.object._01._01;
 
 public class Audience {
   private Bag bag;

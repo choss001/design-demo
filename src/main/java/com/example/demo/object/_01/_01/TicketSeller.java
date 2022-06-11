@@ -1,4 +1,4 @@
-package com.example.demo.object._01_._01;
+package com.example.demo.object._01._01;
 
 public class TicketSeller {
 
@@ -11,5 +11,6 @@ public class TicketSeller {
   public TicketOffice getTicketOffice() {
     return ticketOffice;
   }
+
 
 }
