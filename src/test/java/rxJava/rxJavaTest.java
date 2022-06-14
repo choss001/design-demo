@@ -3,6 +3,7 @@ package rxJava;
 import com.example.demo.reactiveApplication.*;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +23,8 @@ class rxJavaTest {
 //    Observable<TempInfo> observable = getCelsiusTemperature("New York");
 
     Observable<TempInfo> observable = getCelsiusTemperatures("New York", "Chicago", "San Francisco");
-    observable.subscribe(new TempObserver());
-    observable.blockingSubscribe(new TempObserver());
+    observable.subscribe(new rxJava.TempObserver());
+    observable.blockingSubscribe(new rxJava.TempObserver());
   }
 
   public static Observable<TempInfo> getTemperature(String town) {
@@ -50,7 +51,7 @@ class rxJavaTest {
 
   private static Observable<TempInfo> getCelsiusTemperatures(String... towns) {
     return Observable.merge(Arrays.stream(towns)
-        .map(TempObservable::getCelsiusTemperature)
+        .map(rxJava.TempObservable::getCelsiusTemperature)
         .collect(toList()));
   }
 
@@ -63,5 +64,17 @@ class rxJavaTest {
     log.info("test : {}", list);
 
   }
+
+  @Test
+  void test3() {
+    Observable.just(1,2,3,4)
+            .map(value -> {
+              Thread.sleep(1000);
+                      return value;
+            })
+            .subscribeOn(Schedulers.single())
+            .obs
+  }
+
 
 }
