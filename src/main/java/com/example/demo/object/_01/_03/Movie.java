@@ -1,13 +1,26 @@
 package com.example.demo.object._01._03;
 
+
+import java.time.Duration;
+
 public class Movie {
-    private String title;
-    private Duration runningTime;
-    private Money fee;
-    private List<DiscountCondition> discountConditions;
+  private String title;
+  private Duration runningTime;
+  private Money fee;
+  private DiscountPolicy discountPolicy;
 
-    private MovieType movieType;
-    private Money discountAmount;
-    private double discountPercent;
+  public Movie(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy) {
+    this.title = title;
+    this.runningTime = runningTime;
+    this.fee = fee;
+    this.discountPolicy = discountPolicy;
+  }
 
+  public Money getFee() {
+    return fee;
+  }
+
+  public Money calculateMovieFee(Screening screening) {
+    return fee.minus(discountPolicy.calculateDiscountAmount(screening));
+  }
 }
