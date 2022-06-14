@@ -1,24 +1,26 @@
 package com.example.demo.object._01._04;
 
-import com.example.demo.object._01._03.DiscountCondition;
-import com.example.demo.object._01._03.Money;
 
 import java.time.Duration;
-import java.util.List;
 
 public class Movie {
   private String title;
   private Duration runningTime;
   private Money fee;
-  private List<DiscountCondition> discountConditions;
+  private DiscountPolicy discountPolicy;
 
-  private MovieType movieType;
-  private Money discountAmount;
-  private double discountPercent;
-
-  public MovieType getMovieType() {
-    return movieType;
+  public Movie(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy) {
+    this.title = title;
+    this.runningTime = runningTime;
+    this.fee = fee;
+    this.discountPolicy = discountPolicy;
   }
 
-//  public void
+  public Money getFee() {
+    return fee;
+  }
+
+  public Money calculateMovieFee(Screening screening) {
+    return fee.minus(discountPolicy.calculateDiscountAmount(screening));
+  }
 }

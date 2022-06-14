@@ -1,6 +1,7 @@
-package com.example.demo.object._01._03;
+package com.example.demo.object._01._04;
 
-public class PercentDiscountPolicy extends DiscountPolicy{
+
+public class PercentDiscountPolicy extends DefaultDiscountPolicy {
 
   private double percent;
 
@@ -13,4 +14,5 @@ public class PercentDiscountPolicy extends DiscountPolicy{
   protected Money getDiscountAmount(Screening screening) {
     return screening.getMovieFee().times(percent);
   }
+
 }
