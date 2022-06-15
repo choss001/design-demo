@@ -1,6 +1,7 @@
 package com.example.demo.object._01._05;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Movie {
     private String title;
@@ -29,7 +30,7 @@ public class Movie {
     }
 
     public List<DiscountCondition> getDiscountConditions() {
-        return Collections unmodifiableList(discountConditions);
+        return discountConditions;
     }
 
     public void setDiscountConditions(

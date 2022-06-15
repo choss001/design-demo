@@ -1,6 +1,4 @@
-package com.example.demo.object._01._05;
-
-import java.math.BigInteger;
+package com.example.demo.object._01._06;
 
 public class ReservationAgency {
     public Reservation reserve(Screening screening, Customer customer, int audienceCount) {

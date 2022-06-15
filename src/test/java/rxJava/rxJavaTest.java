@@ -72,8 +72,7 @@ class rxJavaTest {
               Thread.sleep(1000);
                       return value;
             })
-            .subscribeOn(Schedulers.single())
-            .obs
+            .subscribeOn(Schedulers.single());
   }
 
 
