@@ -1,4 +1,4 @@
-package rxJava.buffer;
+package rxjava.buffer;
 
 import io.reactivex.rxjava3.core.Flowable;
 import rxJava.DebugSubscriber;
