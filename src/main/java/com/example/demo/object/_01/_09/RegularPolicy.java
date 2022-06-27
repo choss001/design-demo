@@ -1,13 +1,12 @@
-package com.example.demo.object._01._08;
+package com.example.demo.object._01._09;
 
 import java.time.Duration;
 
-public class RegularPhone extends Phone{
-
+public class RegularPolicy extends BasicRatePolicy{
     private Money amount;
     private Duration seconds;
 
-    public RegularPhone(Money amount, Duration seconds) {
+    public RegularPolicy(Money amount, Duration seconds) {
         this.amount = amount;
         this.seconds = seconds;
     }
