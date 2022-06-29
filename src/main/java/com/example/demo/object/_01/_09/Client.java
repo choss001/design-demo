@@ -19,6 +19,13 @@ public class Client {
                         new RegularPolicy(Money.wons(10),
                                 Duration.ofSeconds(10)))));
 
+        Phone phone3 = new Phone(new RateDiscountablePolicy(Money.wons(1000),
+                new TaxablePolicy(0.05,
+                        new NightDiscountPolicy(Money.wons(5),
+                                Money.wons(10),
+                                Duration.ofSeconds(10)
+                                ))));
+
         log.info("test : {}", phone1);
 
 
