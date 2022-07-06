@@ -19,6 +19,7 @@ public class DiscountCondition {
   }
 
   private boolean isSatisfiedByPeriod(Screening screening) {
+    System.out.println("push test");
     return dayOfWeek.equals(screening.getWhenScreened().getDayOfWeek()) &&
         startTime.compareTo(screening.getWhenScreened().toLocalTime()) <= 0 &&
         endTime.isAfter(screening.getWhenScreened().toLocalTime()) == true;
