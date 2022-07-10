@@ -24,5 +24,6 @@ public class DurationDiscountRule extends FixedFeePolicy{
     Phone phone = new Phone(null);
     phone.call(new Call(call.getFrom().plus(from),
         call.getDuration().compareTo(to) > 0 ? call.getFrom().plus(to) : call.getTo()));
+    return super.calculateFee(phone);
   }
 }

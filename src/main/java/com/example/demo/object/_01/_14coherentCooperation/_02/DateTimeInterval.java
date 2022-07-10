@@ -52,7 +52,7 @@ public class DateTimeInterval {
     if (days() > 1) {
       return splitByDay(days());
     }
-    return Arrays.asList(this);
+    return List.of(this);
   }
 
   private int days() {

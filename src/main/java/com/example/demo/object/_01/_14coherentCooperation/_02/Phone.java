@@ -22,4 +22,8 @@ public class Phone {
         return ratePolicy.calculateFee(this);
     }
 
+
+    public void call(Call call) {
+        System.out.println("여기에 무언가 들어가야됨");
+    }
 }

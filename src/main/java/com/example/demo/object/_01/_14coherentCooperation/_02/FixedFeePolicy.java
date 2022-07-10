@@ -3,8 +3,8 @@ package com.example.demo.object._01._14coherentCooperation._02;
 import java.time.Duration;
 
 public class FixedFeePolicy extends BasicRatePolicy {
-    private Money amount;
-    private Duration seconds;
+    private final Money amount;
+    private final Duration seconds;
 
     public FixedFeePolicy(Money amount, Duration seconds) {
         this.amount = amount;
