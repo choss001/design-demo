@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class BasicRatePolicy implements RatePolicy {
+public class BasicRatePolicy implements RatePolicy {
 
     private List<FeeRule> feeRules = new ArrayList<>();
 
@@ -19,8 +19,6 @@ public abstract class BasicRatePolicy implements RatePolicy {
             .map(call -> calculate(call))
             .reduce(Money.ZERO, (first, second) -> first.plus(second));
     }
-
-    protected abstract Money calculateCallFee(Call call);
 
     private Money calculate(Call call) {
         return feeRules

@@ -1,38 +1,30 @@
 package com.example.demo.object._01._14coherentCooperation._03;
 
+import com.example.demo.object._01._14coherentCooperation._03.condition.DayOfWeekFeeCondition;
+import com.example.demo.object._01._14coherentCooperation._03.condition.TimeOfDayFeeCondition;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.Duration;
+import java.time.LocalTime;
 
 @Slf4j
 public class Client {
-    public static void main(String[] args) {
-        Phone phone = new Phone(
-                new FixedFeePolicy(Money.wons(10),
-                        Duration.ofSeconds(10)));
+  public static void main(String[] args) {
+    Phone phone4 =
+        new Phone(
+            new RateDiscountablePolicy(
+                Money.wons(1000L),
+                new BasicRatePolicy(
+                    new FeeRule(
+                        new TimeOfDayFeeCondition(
+                            LocalTime.of(3, 30),
+                            LocalTime.of(13, 30)),
+                        new FeePerDuration(
+                            Money.wons(1000),
+                            Duration.ofHours(6))))));
+    phone4.calculateFee();
+    log.info("phone4 : {}", phone4.getCalls());
+    log.info("test");
 
-        Phone phone1 = new Phone(new NightDiscountPolicy(Money.wons(5)
-                , Money.wons(10), Duration.ofSeconds(10)));
-
-        Phone phone2 = new Phone(new RateDiscountablePolicy(Money.wons(1000),
-                new TaxablePolicy(0.05,
-                        new FixedFeePolicy(Money.wons(10),
-                                Duration.ofSeconds(10)))));
-
-        Phone phone3 = new Phone(new RateDiscountablePolicy(Money.wons(1000),
-                new TaxablePolicy(0.05,
-                        new NightDiscountPolicy(Money.wons(5),
-                                Money.wons(10),
-                                Duration.ofSeconds(10)
-                                ))));
-
-        log.info("test : {}", phone1);
-
-
-        log.info("test : {}", phone.calculateFee());
-        log.info("test : {}", phone.getCalls());
-        log.info("test : {}", Duration.ofHours(1));
-        log.info("hour : {}", Duration.ofHours(1).toHours());
-
-    }
+  }
 }
