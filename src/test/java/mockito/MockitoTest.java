@@ -30,6 +30,8 @@ public class MockitoTest {
 
     Bag bag1 = audience.getBag();
 
+    log.info("rebase edit test");
+    log.info("rebase edit test2");
     log.info("test : {}", bag1);
   }
 }
