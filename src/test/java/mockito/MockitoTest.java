@@ -77,6 +77,7 @@ public class MockitoTest {
     Arrays.stream(intArray).flatMap(i -> IntStream.of(i)).forEach(i -> System.out.println("tset :" + i));
     Arrays.stream(intArray).forEach(i -> System.out.println("tset :" + i));
     List<Integer> collect = IntStream.of(intArray).boxed().collect(Collectors.toList());
+//    IntStream.of(intArray).flatMap(i -> IntStream.of(i)).collect(Collectors.averagingInt(i -> (int) i));
     log.info("IntegerListr  : {}", collect);
 //    IntStream.of(intArray).
 //    log.info("test : {}", collect);
