@@ -76,7 +76,7 @@ public class HibernateHiloUnitTest {
     private static URL getPropertiesURL() {
         return Thread.currentThread()
                 .getContextClassLoader()
-                .getResource("hibernate-hilo.properties");
+                .getResource("hibernate.properties");
     }
 
     @Test
