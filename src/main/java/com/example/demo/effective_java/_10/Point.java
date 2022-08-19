@@ -33,6 +33,10 @@ public class Point {
         Point p = (Point) o;
         return p.x == x && p.y == y;
     }
+    @Override
+    public int hashCode(){
+        return x*3333+ y*4444;
+    }
 
     public class ColorPoint extends Point {
         private final Color color;

@@ -2,6 +2,7 @@ package com.example.demo.effective_java._10;
 
 import org.junit.jupiter.api.Test;
 
+import javax.persistence.SecondaryTable;
 import java.awt.*;
 import java.util.Set;
 
@@ -43,7 +44,17 @@ class PointTest {
         boolean contains = unitCircle.contains(p);
         System.out.println(contains);
 
+        boolean equals = p.equals(p);
+        System.out.println("point equals test : "+equals);
+
     }
 
+    @Test
+    void test4() {
+        Set<String> strings = Set.of("test", "wow", "1");
+
+        boolean test = strings.contains("test");
+        System.out.println(test);
+    }
 
 }
