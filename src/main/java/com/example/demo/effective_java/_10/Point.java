@@ -38,12 +38,16 @@ public class Point {
         return x*3333+ y*4444;
     }
 
-    public class ColorPoint extends Point {
+    public class ColorPoint{
         private final Color color;
+        private final Point point;
 
         public ColorPoint(int x, int y, Color color) {
-            super(x, y);
+            point = new Point(x, y);
             this.color = color;
+        }
+        public Point asPoint(){
+            return point;
         }
 
         @Override

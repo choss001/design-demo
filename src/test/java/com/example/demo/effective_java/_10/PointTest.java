@@ -57,4 +57,17 @@ class PointTest {
         System.out.println(test);
     }
 
+    @Test
+    void test5() {
+        Point point = new Point(1, 0);
+        boolean b = Point.CountPoint.onUnitCircle(point);
+        System.out.println(b);
+
+        Point.CountPoint pc = new Point.CountPoint(1,0);
+        boolean b1 = Point.onUnitCircle(pc);
+        System.out.println(b1);
+
+
+    }
+
 }
