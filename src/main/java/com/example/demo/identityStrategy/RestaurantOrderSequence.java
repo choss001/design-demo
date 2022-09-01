@@ -6,7 +6,7 @@ import org.hibernate.annotations.Parameter;
 import javax.persistence.*;
 
 @Entity
-public class RestaurantOrder {
+public class RestaurantOrderSequence {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hilo_sequence_generator")
     @GenericGenerator(
@@ -15,7 +15,7 @@ public class RestaurantOrder {
             parameters = {
                     @Parameter(name = "sequence_name", value = "hilo_seqeunce"),
                     @Parameter(name = "initial_value", value = "1"),
-                    @Parameter(name = "increment_size", value = "3"),
+                    @Parameter(name = "increment_size", value = "5"),
                     @Parameter(name = "optimizer", value = "hilo")
             }
     )

@@ -1,9 +1,7 @@
 package identityStrategy;
 
-import ch.qos.logback.classic.BasicConfigurator;
 import com.example.demo.DemoApplication;
-import com.example.demo.identityStrategy.RestaurantOrder;
-import org.apache.logging.log4j.LogManager;
+import com.example.demo.identityStrategy.RestaurantOrderSequence;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.Test;
@@ -24,7 +22,7 @@ public class IdentityTest {
         Transaction transaction = session.beginTransaction();
 
         for (int i = 0; i < 9; i++) {
-            session.persist(new RestaurantOrder());
+            session.persist(new RestaurantOrderSequence());
             session.flush();
         }
 

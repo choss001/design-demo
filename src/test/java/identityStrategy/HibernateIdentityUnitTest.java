@@ -1,6 +1,6 @@
 package identityStrategy;
 
-import com.example.demo.identityStrategy.RestaurantOrderIdentity;
+import com.example.demo.identityStrategy.RestaurantOrderSequence;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -11,7 +11,9 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.SessionFactoryBuilder;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,7 +21,8 @@ import java.net.URL;
 import java.util.Properties;
 
 @Slf4j
-public class HibernateHiloUnitTest {
+public class HibernateIdentityUnitTest {
+
     private Session session;
 
     @BeforeEach
@@ -46,7 +49,7 @@ public class HibernateHiloUnitTest {
 
     private static SessionFactoryBuilder getSessionFactoryBuilder(ServiceRegistry serviceRegistry) {
         MetadataSources metadataSources = new MetadataSources(serviceRegistry);
-        metadataSources.addAnnotatedClass(RestaurantOrderIdentity.class);
+        metadataSources.addAnnotatedClass(RestaurantOrderSequence.class);
         Metadata metadata = metadataSources.buildMetadata();
 
         return metadata.getSessionFactoryBuilder();
@@ -77,17 +80,18 @@ public class HibernateHiloUnitTest {
     }
 
     @Test
-    public void givenIdentityStrategy() {
+    public void givenSequenceStrategy() {
         Transaction transaction = session.beginTransaction();
 
         for (int i = 0; i < 9; i++) {
-            session.persist(new RestaurantOrderIdentity());
+            session.persist(new RestaurantOrderSequence());
             log.info("in for loop : {}", i);
         }
 
         log.info(" commit! ");
         transaction.commit();
     }
+
 
     @AfterEach
     public void cleanup() {
