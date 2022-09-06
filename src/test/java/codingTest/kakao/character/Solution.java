@@ -25,7 +25,7 @@ class Solution {
 
 
     for(String value : findKey){
-      map.put(String.valueOf(table.get(value).charAt(0)), Integer.valueOf(table.get(value).charAt(2)));
+      map.put(String.valueOf(table.get(value).charAt(0)), (int) table.get(value).charAt(2));
     }
 
 
@@ -37,16 +37,13 @@ class Solution {
 
     String test = table.keySet().stream().collect(Collectors.joining(";"));
 
-    return table.values().stream().collect(Collectors.joining(":"));
+    return answer;
   }
 
 
   private void recursive(String comp, String others, int count){
+//    if(comp.length() == 2){
     if(count == 0){
-      return;
-    }
-
-    if(comp.length() == 2){
       for(int i= 1; i < 8; i++){
         if(i < 5){
           table.put(comp+" "+i, comp.charAt(1)+ " "+Math.abs(i-4));
@@ -54,10 +51,13 @@ class Solution {
           table.put(comp+" "+i, comp.charAt(0)+" "+(i-4));
         }
       }
+      return;
     }
 
     for(int i=0; i < others.length(); i++){
-      recursive(comp+ others.charAt(i), others.substring(0, i) + others.substring(i+1), count--);
+//      if(comp.length() == 2)
+//        break;
+      recursive(comp+ others.charAt(i), others.substring(0, i) + others.substring(i+1), count -1);
     }
   }
 
