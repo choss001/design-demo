@@ -18,6 +18,14 @@ class PriorityQueueTest {
 //      System.out.println("why : "+ value);
 //      result.append(value);
 //    }
+    String value = "";
+    value.toCharArray();
+
+    Integer valueInt = 6;
+    int[] integers = queue
+        .stream()
+        .mapToInt(Long::intValue)
+        .toArray();
 
     int size = queue.size();
     for(int i = 0; i < size; i++){
