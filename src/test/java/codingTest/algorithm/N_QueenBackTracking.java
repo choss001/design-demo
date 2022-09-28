@@ -1,11 +1,10 @@
 package codingTest.algorithm;
 
 public class N_QueenBackTracking {
-  static final int N = 8;
+  static final int N = 4;
 
   // print the final solution matrix
-  static void printSolution(int[][] board)
-  {
+  static void printSolution(int[][] board) {
     for (int i = 0; i < N; i++) {
       for (int j = 0; j < N; j++)
         System.out.print(" " + board[i][j]
@@ -15,8 +14,7 @@ public class N_QueenBackTracking {
   }
 
   // function to check whether the position is safe or not
-  static boolean isSafe(int[][] board, int row, int col)
-  {
+  static boolean isSafe(int[][] board, int row, int col) {
     int i, j;
     for (i = 0; i < col; i++)
       if (board[row][i] == 1)
@@ -35,8 +33,7 @@ public class N_QueenBackTracking {
   }
 
   // The function that solves the problem using backtracking
-  public static boolean solveNQueen(int[][] board, int col)
-  {
+  public static boolean solveNQueen(int[][] board, int col) {
     if (col >= N)
       return true;
 
@@ -55,23 +52,24 @@ public class N_QueenBackTracking {
     return false;
   }
 
-  public static void main(String[] args)
-  {
-//    int[][] board = { { 0, 0, 0, 0 },
-//        { 0, 0, 0, 0 },
-//        { 0, 0, 0, 0 },
-//        { 0, 0, 0, 0 } };
-
+  public static void main(String[] args) {
     int[][] board = {
-        { 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0 },
+        {0, 0, 0, 0},
+        {0, 0, 0, 0},
+        {0, 0, 0, 0},
+        {0, 0, 0, 0}
     };
+
+//    int[][] board = {
+//        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//    };
 
     if (!solveNQueen(board, 0)) {
       System.out.print("Solution does not exist");
