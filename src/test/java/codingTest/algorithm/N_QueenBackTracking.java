@@ -1,7 +1,7 @@
 package codingTest.algorithm;
 
 public class N_QueenBackTracking {
-  static final int N = 4;
+  static final int N = 8;
 
   // print the final solution matrix
   static void printSolution(int[][] board)
@@ -57,10 +57,21 @@ public class N_QueenBackTracking {
 
   public static void main(String[] args)
   {
-    int[][] board = { { 0, 0, 0, 0 },
-        { 0, 0, 0, 0 },
-        { 0, 0, 0, 0 },
-        { 0, 0, 0, 0 } };
+//    int[][] board = { { 0, 0, 0, 0 },
+//        { 0, 0, 0, 0 },
+//        { 0, 0, 0, 0 },
+//        { 0, 0, 0, 0 } };
+
+    int[][] board = {
+        { 0, 0, 0, 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0, 0, 0, 0 },
+    };
 
     if (!solveNQueen(board, 0)) {
       System.out.print("Solution does not exist");
