@@ -17,7 +17,6 @@ public class TwoDimensionalArrayTest {
         { 0, 0, 0, 0 }
     };
 
-    (2, 1);
 
     log.info("test : {}", board[2][3]);
   }
