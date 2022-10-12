@@ -6,6 +6,6 @@ public class MixElementTest {
 
   @Test
   void test() {
-    
+
   }
 }
