@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -117,10 +116,12 @@ public class ChessPrintTest {
 
   @Test
   void regex2() {
-//    String line = "This order was placed for QT3000! OK?";
-    String line = "a";
-    String pattern = "^(a)?a";
-//    String pattern = "(.*)";
+//    String line = "aabbaa";
+    String line = " dk ";
+//    String line = " b ";
+    String pattern = "^(?!\s*$).+";
+//    String pattern = "^(\s*)";
+//    String pattern = ".+(?!\s).+";
 
     Pattern r = Pattern.compile(pattern);
 
@@ -128,9 +129,10 @@ public class ChessPrintTest {
 //    MatchResult m = r.matcher(line);
 
     if (m.find()) {
-      System.out.printf("Found value group(0): %s%n", m.group(0));
-      System.out.printf("Found value group(1) : %s%n", m.group(1));
-//      System.out.printf("Found value group(2) : %s%n", m.group(2));
+      System.out.printf("Found value group(0): '%s', start %d, end %d%n", m.group(0), m.start(), m.end());
+//      System.out.printf("Found value group(1) : %s, start %d, end %d%n", m.group(1),m.start(1),m.end(1));
+//      System.out.printf("Found value group(2) : %s, start %d, end %d%n", m.group(2),m.start(2),m.end(2));
+//      System.out.printf("Found value group(3) : %s, start %d, end %d%n", m.group(3),m.start(3),m.end(3));
       System.out.printf("group Count : %s%n", m.groupCount());
       System.out.printf("just group() : %s%n", m.group());
 
@@ -186,7 +188,7 @@ public class ChessPrintTest {
         flag = true;
 
     }
-    System.out.println(builder.toString());
+    System.out.println(builder);
 
   }
 
@@ -214,6 +216,9 @@ public class ChessPrintTest {
 //    id = id.replaceAll("[\\.]$", "");
     System.out.println(id);
 
+    String s = Integer.toBinaryString(10);
+    System.out.printf("dsdfdk %s", s);
+    StringFormat
   }
 
   @Test
@@ -222,5 +227,19 @@ public class ChessPrintTest {
 
     id = id.replaceAll(".*(.{5})", "$1");
     System.out.println(id);
+  }
+
+  @Test
+  void charTest() {
+//    char ch = 'a';
+//    System.out.printf("test : %c%n",ch);
+//    System.out.println("value : " + (int)ch);
+//    System.out.println("value : " + (int)'A');
+//    System.out.printf("%d",(int)'a'-(int)'A');
+//    IntStream.range(65,98)
+//        .forEach(i-> System.out.printf("%c, ",(char)i));
+    char chara = 'b';
+    System.out.println((char)('b'+2));
+    chara = (char)((chara - 'a' + 4)%26 + 'a');
   }
 }
