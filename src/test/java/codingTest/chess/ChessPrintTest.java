@@ -1,5 +1,6 @@
 package codingTest.chess;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import java.util.stream.IntStream;
  */
 
 
+@Slf4j
 public class ChessPrintTest {
 
   private static final String[][] CHESS_ALREADY = {
@@ -218,7 +220,6 @@ public class ChessPrintTest {
 
     String s = Integer.toBinaryString(10);
     System.out.printf("dsdfdk %s", s);
-    StringFormat
   }
 
   @Test
@@ -241,5 +242,18 @@ public class ChessPrintTest {
     char chara = 'b';
     System.out.println((char)('b'+2));
     chara = (char)((chara - 'a' + 4)%26 + 'a');
+  }
+
+  @Test
+  void test12(){
+    int M = 3;
+    int[] a = {10,9,8,7,6,3,4,5};
+    for(int i =M-1; i< a.length; i++){
+      int partialSum = 0;
+      for(int j =0; j < M; j++){
+         partialSum += a[i-j];
+      }
+      log.info("test : {}", partialSum/M);
+    }
   }
 }
