@@ -118,8 +118,10 @@ public class ChessPrintTest {
   @Test
   void regex2() {
 //    String line = "This order was placed for QT3000! OK?";
-    String line = "a";
-    String pattern = "^(a)?a";
+//    String line = "########################### CancellationService ###########################";
+    String line = "2022-10-05 23:56:58.103  INFO 7 --- [http-nio-8890-exec-92233] c.e.t.s.s.i.i.SktUserStatisticsService   : ########################### dbSubscription : JS045 ###########################";
+//    String pattern = ".*?exec-(\\d+)].*#{2,}.+";
+    String pattern = ".*exec-(\\d+)].*#{2,} dbSubscription :.*";
 //    String pattern = "(.*)";
 
     Pattern r = Pattern.compile(pattern);
@@ -128,9 +130,9 @@ public class ChessPrintTest {
 //    MatchResult m = r.matcher(line);
 
     if (m.find()) {
-      System.out.printf("Found value group(0): %s%n", m.group(0));
-      System.out.printf("Found value group(1) : %s%n", m.group(1));
-//      System.out.printf("Found value group(2) : %s%n", m.group(2));
+      System.out.printf("Found value group(0): %s, start : %d, end : %d %n", m.group(0), m.start(0), m.end(0));
+      System.out.printf("Found value group(1): %s, start : %d, end : %d %n", m.group(1), m.start(1), m.end(1));
+//      System.out.printf("Found value group(2): %s, start : %d, end : %d %n", m.group(2), m.start(2), m.end(2));
       System.out.printf("group Count : %s%n", m.groupCount());
       System.out.printf("just group() : %s%n", m.group());
 
