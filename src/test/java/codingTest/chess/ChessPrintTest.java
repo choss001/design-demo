@@ -3,10 +3,7 @@ package codingTest.chess;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -256,4 +253,29 @@ public class ChessPrintTest {
       log.info("test : {}", partialSum/M);
     }
   }
+
+  @Test
+  void test13(){
+    int M = 3;
+    int[] A = {10,9,8,7,6,3,4,5};
+    List<Double> ret = new ArrayList<>();
+    double partialSum = 0d;
+    for(int i=0; i < M-1; i++)
+      partialSum += A[i];
+    for(int i= M-1; i < A.length; i++){
+      partialSum += A[i];
+      ret.add(partialSum / M);
+      partialSum -= A[i - M + 1];
+    }
+    log.info("result : {}", ret);
+
+  }
+  @Test
+  void test14(){
+    int INF = 987654321;
+  }
+  private boolean canEverybodyEat(){
+    return false;
+  }
+
 }
