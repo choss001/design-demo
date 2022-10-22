@@ -34,7 +34,7 @@ class RecursiveTest {
   void test1(){
     String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
     int[] course = {2, 3, 4};
-    log.info("result : {}", solution(orders, course));
+    log.info("result : {}",  (Object) solution(orders, course));
   }
 
   private void removeHashMapValueOne(int[] course){
