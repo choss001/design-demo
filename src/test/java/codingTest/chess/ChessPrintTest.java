@@ -1,12 +1,9 @@
 package codingTest.chess;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.regex.MatchResult;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -19,6 +16,7 @@ import java.util.stream.IntStream;
  */
 
 
+@Slf4j
 public class ChessPrintTest {
 
   private static final String[][] CHESS_ALREADY = {
@@ -118,9 +116,12 @@ public class ChessPrintTest {
   @Test
   void regex2() {
 //    String line = "This order was placed for QT3000! OK?";
-    String line = "a";
-    String pattern = "^(a)?a";
+//    String line = "########################### CancellationService ###########################";
+    String line = "2022-10-05 23:56:58.103  INFO 7 --- [http-nio-8890-exec-92233] c.e.t.s.s.i.i.SktUserStatisticsService   : ########################### dbSubscription : JS045 ###########################";
+//    String pattern = ".*?exec-(\\d+)].*#{2,}.+";
+    String pattern = ".*exec-(\\d+)].*#{2,} dbSubscription :.*";
 //    String pattern = "(.*)";
+//    String pattern = ".+(?!\s).+";
 
     Pattern r = Pattern.compile(pattern);
 
@@ -128,9 +129,9 @@ public class ChessPrintTest {
 //    MatchResult m = r.matcher(line);
 
     if (m.find()) {
-      System.out.printf("Found value group(0): %s%n", m.group(0));
-      System.out.printf("Found value group(1) : %s%n", m.group(1));
-//      System.out.printf("Found value group(2) : %s%n", m.group(2));
+      System.out.printf("Found value group(0): %s, start : %d, end : %d %n", m.group(0), m.start(0), m.end(0));
+      System.out.printf("Found value group(1): %s, start : %d, end : %d %n", m.group(1), m.start(1), m.end(1));
+//      System.out.printf("Found value group(2): %s, start : %d, end : %d %n", m.group(2), m.start(2), m.end(2));
       System.out.printf("group Count : %s%n", m.groupCount());
       System.out.printf("just group() : %s%n", m.group());
 
@@ -186,7 +187,7 @@ public class ChessPrintTest {
         flag = true;
 
     }
-    System.out.println(builder.toString());
+    System.out.println(builder);
 
   }
 
@@ -214,6 +215,8 @@ public class ChessPrintTest {
 //    id = id.replaceAll("[\\.]$", "");
     System.out.println(id);
 
+    String s = Integer.toBinaryString(10);
+    System.out.printf("dsdfdk %s", s);
   }
 
   @Test
@@ -223,4 +226,56 @@ public class ChessPrintTest {
     id = id.replaceAll(".*(.{5})", "$1");
     System.out.println(id);
   }
+
+  @Test
+  void charTest() {
+//    char ch = 'a';
+//    System.out.printf("test : %c%n",ch);
+//    System.out.println("value : " + (int)ch);
+//    System.out.println("value : " + (int)'A');
+//    System.out.printf("%d",(int)'a'-(int)'A');
+//    IntStream.range(65,98)
+//        .forEach(i-> System.out.printf("%c, ",(char)i));
+    char chara = 'b';
+    System.out.println((char)('b'+2));
+    chara = (char)((chara - 'a' + 4)%26 + 'a');
+  }
+
+  @Test
+  void test12(){
+    int M = 3;
+    int[] a = {10,9,8,7,6,3,4,5};
+    for(int i =M-1; i< a.length; i++){
+      int partialSum = 0;
+      for(int j =0; j < M; j++){
+         partialSum += a[i-j];
+      }
+      log.info("test : {}", partialSum/M);
+    }
+  }
+
+  @Test
+  void test13(){
+    int M = 3;
+    int[] A = {10,9,8,7,6,3,4,5};
+    List<Double> ret = new ArrayList<>();
+    double partialSum = 0d;
+    for(int i=0; i < M-1; i++)
+      partialSum += A[i];
+    for(int i= M-1; i < A.length; i++){
+      partialSum += A[i];
+      ret.add(partialSum / M);
+      partialSum -= A[i - M + 1];
+    }
+    log.info("result : {}", ret);
+
+  }
+  @Test
+  void test14(){
+    int INF = 987654321;
+  }
+  private boolean canEverybodyEat(){
+    return false;
+  }
+
 }
