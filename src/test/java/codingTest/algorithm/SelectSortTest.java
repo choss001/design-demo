@@ -3,6 +3,13 @@ package codingTest.algorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 @Slf4j
 public class SelectSortTest {
 
@@ -10,8 +17,13 @@ public class SelectSortTest {
   @Test
   void test1(){
 //    selectSort();
-    insertSort();
-    log.info("result : {}", A);
+//    insertSort();
+//    log.info("result : {}", A);
+    List<Integer> list = IntStream.range(0, 7)
+        .boxed()
+        .collect(Collectors.toList());
+
+    recursiveAlgorithms(7, new ArrayList<Integer>(), 4);
 
   }
 
@@ -36,6 +48,19 @@ public class SelectSortTest {
         A[j] = temp;
         --j;
       }
+    }
+  }
+
+  void recursiveAlgorithms(int n, List<Integer> picked, int toPick){
+    if(toPick == 0){
+      log.info("picked : {} ",picked);
+      return;
+    }
+    int smallest = picked.isEmpty() ? 0 : picked.get(picked.size() -1) +1;
+    for(int next = smallest; next < n; next++){
+      picked.add(next);
+      recursiveAlgorithms(n, new ArrayList<Integer>(picked), toPick -1);
+      picked.remove(picked.size() -1);
     }
   }
 }
