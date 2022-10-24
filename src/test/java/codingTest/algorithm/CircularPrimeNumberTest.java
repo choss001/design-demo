@@ -26,4 +26,15 @@ public class CircularPrimeNumberTest {
     if(n == 1) return 1;
     return n + recursiveSum(n-1);
   }
+
+  @Test
+  void test2(){
+    int n = 7;
+  }
+  private void recusiveGetInput(int n, int index, ){
+    if(index == 3){
+      System.out.printf("");
+      return;
+    }
+  }
 }
