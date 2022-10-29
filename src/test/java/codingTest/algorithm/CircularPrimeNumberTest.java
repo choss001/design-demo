@@ -31,10 +31,4 @@ public class CircularPrimeNumberTest {
   void test2(){
     int n = 7;
   }
-  private void recusiveGetInput(int n, int index, ){
-    if(index == 3){
-      System.out.printf("");
-      return;
-    }
-  }
 }
