@@ -1,39 +1,60 @@
 package codingTest.algorithm;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Slf4j
 public class _157PJongManBook {
 
-  int n;
-  int[][] areFriends = {
-      {2, 1},
-      {0, 1},
-      {4, 6},
-      {0, 1, 1, 2, 2, 3, 3, 0, 0, 2, 1, 3},
-      {6, 10},
-      {0, 1, 0, 2, 1, 2, 1, 3, 1, 4, 2, 3, 2, 4, 3, 4, 3, 5, 4, 5}
-  };
-
+  int testcase;
+  boolean[] taken = {false, false, false, false, false, false, false, false, false, false};
+  boolean[][] areFriends = new boolean[10][10];
+  int student;
 
   @Test
   void test1() {
-    n = 3;
+    testcase = 1;
+    int coupleNum = 6;
+    student = 4;
+    int[] input = {0, 1, 1, 2, 2, 3, 3, 0, 0, 2, 1, 3};
+    int ret = 0;
+//    int[] input = {0,1};
+    //12
+    for (int i = 0; i < input.length; i += 2) {
+      areFriends[input[i]][input[i + 1]] = true;
+      areFriends[input[i + 1]][input[i]] = true;
+    }
+
+    log.info("testcase : {}", testcase);
+    while (testcase > 0) {
+      testcase--;
+      ret = countPairingsJava(taken);
+    }
+    log.info("result : {}", ret);
+
 
   }
 
-  private int countPairings(boolean[] taken) {
-    boolean finished = true;
-    for (int i = 0; i < n; i++) if (!taken[i]) finished = false;
-    if (finished) return 1;
-    int ret = 0;
-    for (int i = 0; i < n; i++)
-      for (int j = 0; j < n; j++) {
-        if (!taken[i] && !taken[j] && areFriends[i][j]) {
-          taken[i] = taken[j] = true;
-          ret += countPairings(taken);
-          taken[i] = taken[j] = false;
-        }
+  private int countPairingsJava(boolean[] taken) {
+    int firstFree = -1;
+    for (int i = 0; i < student; i++) {
+      if (!taken[i]) {
+        firstFree = i;
+        break;
       }
+    }
+    if (firstFree == -1) return 1;
+    int ret = 0;
+    for (int pairWith = firstFree + 1; pairWith < student; pairWith++) {
+      if (!taken[pairWith] && areFriends[firstFree][pairWith]) {
+        taken[firstFree] = taken[pairWith] = true;
+        ret += countPairingsJava(taken);
+        taken[firstFree] = taken[pairWith] = false;
+      }
+    }
     return ret;
   }
 }
