@@ -8,20 +8,22 @@ import java.util.Stack;
 @Slf4j
 public class PaperMarioTest {
   int[][] board = {
-      {0, 1, 0, 1},
-      {0, 1, 0, 0},
-      {0, 0, 0, 1},
-      {1, 1, 1, 0},
-      {1, 0, 0, 0},
-      {0, 1, 1, 0},
-      {1, 0, 0, 0},
+      {1, 1, 1, 1},
       {0, 0, 0, 0},
-      {1, 0, 0, 0},
+      {0, 0, 0, 0},
+      {1, 1, 0, 0},
+      {1, 1, 0, 0},
+      {0, 0, 0, 0},
+      {0, 0, 0, 0},
+      {0, 0, 0, 0},
+      {0, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}
   };
-  int maxCount = 3;
+
+
+  int maxCount = 2;
   Stack<String> process = new Stack<>();
 
   @Test
@@ -42,7 +44,7 @@ public class PaperMarioTest {
 
   private void transverse(int maxCount, Stack<String> process) {
     maxCount--;
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 12; i++) {
       if(allEmptyRow(i))
         continue;
       for (int j = 0; j < 8; j++) {
@@ -60,7 +62,7 @@ public class PaperMarioTest {
     for (int i = 0; i < 4; i++) {
       if(allEmptyColumn(i))
         continue;
-      for (int j = 0; j < 11; j++) {
+      for (int j = 0; j < 12; j++) {
         moveUpward(i, j);
         process.add("위쪽 컬럼 : " + i + ", 횟수 : " + (j+1) +"\n");
         recursive(maxCount, process);
@@ -95,6 +97,8 @@ public class PaperMarioTest {
         checkReset();
         return false;
       }
+
+      board[11][1] = board[11][0] = board[0][0] = board[0][1] = 2;
     }
     //남은 1짜리가 있는지
     for(int i =0; i < 4; i++)
@@ -123,14 +127,14 @@ public class PaperMarioTest {
       int counterPart = (row + 6) % 12;
       int[] temp = {board[row][0], board[row][1], board[row][2], board[row][3],
           board[counterPart][0], board[counterPart][1], board[counterPart][2], board[counterPart][3]};
-      board[row][0] = temp[7];
+      board[row][0] = temp[4];
       board[row][1] = temp[0];
       board[row][2] = temp[1];
       board[row][3] = temp[2];
-      board[counterPart][0] = temp[3];
-      board[counterPart][1] = temp[4];
-      board[counterPart][2] = temp[5];
-      board[counterPart][3] = temp[6];
+      board[counterPart][0] = temp[5];
+      board[counterPart][1] = temp[6];
+      board[counterPart][2] = temp[7];
+      board[counterPart][3] = temp[3];
     }
   }
 
@@ -142,11 +146,11 @@ public class PaperMarioTest {
       board[row][0] = temp[1];
       board[row][1] = temp[2];
       board[row][2] = temp[3];
-      board[row][3] = temp[4];
-      board[counterPart][0] = temp[5];
-      board[counterPart][1] = temp[6];
-      board[counterPart][2] = temp[7];
-      board[counterPart][3] = temp[0];
+      board[row][3] = temp[7];
+      board[counterPart][0] = temp[0];
+      board[counterPart][1] = temp[4];
+      board[counterPart][2] = temp[5];
+      board[counterPart][3] = temp[6];
     }
   }
 
@@ -208,3 +212,18 @@ public class PaperMarioTest {
 
   }
 }
+
+//  int[][] board = {
+//      {0, 0, 1, 0},
+//      {0, 0, 0, 0},
+//      {1, 1, 0, 1},
+//      {0, 0, 0, 0},
+//      {0, 0, 0, 0},
+//      {1, 1, 1, 1},
+//      {0, 0, 0, 0},
+//      {0, 0, 0, 0},
+//      {0, 0, 0, 0},
+//      {0, 0, 0, 0},
+//      {0, 0, 0, 0},
+//      {0, 0, 0, 0}
+//  };
