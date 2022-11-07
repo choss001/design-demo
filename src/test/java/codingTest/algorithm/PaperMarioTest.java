@@ -9,10 +9,10 @@ import java.util.Stack;
 public class PaperMarioTest {
   int[][] board = {
       {1, 1, 1, 1},
+      {1, 1, 0, 1},
+      {1, 1, 1, 1},
+      {0, 0, 0, 1},
       {0, 0, 0, 0},
-      {0, 0, 0, 0},
-      {1, 1, 0, 0},
-      {1, 1, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0},
@@ -23,7 +23,7 @@ public class PaperMarioTest {
   };
 
 
-  int maxCount = 2;
+  int maxCount = 3;
   Stack<String> process = new Stack<>();
 
   @Test
@@ -212,18 +212,3 @@ public class PaperMarioTest {
 
   }
 }
-
-//  int[][] board = {
-//      {0, 0, 1, 0},
-//      {0, 0, 0, 0},
-//      {1, 1, 0, 1},
-//      {0, 0, 0, 0},
-//      {0, 0, 0, 0},
-//      {1, 1, 1, 1},
-//      {0, 0, 0, 0},
-//      {0, 0, 0, 0},
-//      {0, 0, 0, 0},
-//      {0, 0, 0, 0},
-//      {0, 0, 0, 0},
-//      {0, 0, 0, 0}
-//  };
