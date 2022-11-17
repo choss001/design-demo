@@ -29,7 +29,6 @@ public class Karatsuba {
     int aInt = parseArrayToInt(a);
     int bInt = parseArrayToInt(b);
     aInt += (bInt << 1) + (bInt << 3);
-
 //    bInt * 100 = (bInt * 2) + (bInt * 8)
 //
 //        100 =
