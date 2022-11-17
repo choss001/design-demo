@@ -3,6 +3,7 @@ package codingTest.algorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,22 +20,37 @@ public class Karatsuba {
 
   @Test
   void karatsuba(){
-    log.info("result : {}", (n << 1) + (n << 3));
-
-    addTo(a, b, 2);
-    log.info("a : {}", a);
+    subFrom(b, a);
+    log.info("a : {}", b);
+  }
+  private List<Integer> karatsuba(List<Integer> a, List<Integer> b){
+    int an = a.size();
+    int bn = b.size();
+    if(an < bn) return karatsuba(b, a);
+    if(an == 0 || bn == 0) return new ArrayList<>();
+    if(an <= 50) return multiply(a, b);
+    int h
+  }
+  private List<Integer> multiply(List<Integer> a, List<Integer> b){
+    int aInt = parseArrayToInt(a);
+    int bInt = parseArrayToInt(b);
+    parseIntToArray(aInt * bInt, a);
+    return a;
   }
 
   void addTo(List<Integer> a, List<Integer> b, int k) {
     int aInt = parseArrayToInt(a);
     int bInt = parseArrayToInt(b);
-    aInt += (bInt << 1) + (bInt << 3);
-//    bInt * 100 = (bInt * 2) + (bInt * 8)
-//
-//        100 =
-//
-//    parseIntToArray(aInt, a);
-
+//    aInt += (bInt << 1) + (bInt << 3);
+    bInt = powOfTen(k, bInt);
+    int sum = aInt + bInt;
+    parseIntToArray(sum, a);
+  }
+  private int powOfTen(int size, int value){
+    for (int i = 0; i < size; i++) {
+      value = (value << 1) + (value << 3);
+    }
+    return value;
   }
 
   int parseArrayToInt(List<Integer> a) {
@@ -58,6 +74,9 @@ public class Karatsuba {
   }
 
   void subFrom(List<Integer> a, List<Integer> b) {
-
+    int aInt = parseArrayToInt(a);
+    int bInt = parseArrayToInt(b);
+    int minus = aInt - bInt;
+    parseIntToArray(minus, a);
   }
 }
