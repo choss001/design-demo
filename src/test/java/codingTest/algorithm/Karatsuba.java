@@ -29,7 +29,7 @@ public class Karatsuba {
     if(an < bn) return karatsuba(b, a);
     if(an == 0 || bn == 0) return new ArrayList<>();
     if(an <= 50) return multiply(a, b);
-    int h
+            return null;
   }
   private List<Integer> multiply(List<Integer> a, List<Integer> b){
     int aInt = parseArrayToInt(a);
