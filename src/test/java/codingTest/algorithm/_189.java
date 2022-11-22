@@ -21,5 +21,17 @@ public class _189 {
     @Test
     void test1() {
 
+
+    }
+    private String reverseTree(String input){
+        String[] inputArray = input.split("");
+        for (int i = 0; i < inputArray.length; i++) {
+            if(inputArray[i].equals("b") || inputArray[i].equals("w")){
+                return inputArray[i];
+            }else{
+                String LU = reverseTree();
+            }
+        }
+        return null;
     }
 }
