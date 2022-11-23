@@ -1,7 +1,12 @@
 package codingTest.algorithm;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
+@Slf4j
 public class _189 {
     String input = "xbwwb";
     String output = "xwbbw";
@@ -14,24 +19,26 @@ public class _189 {
 //  0111
 //  1011
 
-//  1011
+    //  1011
 //  0111
 //  1100
 //  1100
     @Test
     void test1() {
-
-
+        String[] headArray = input.split("");
+        Iterable<String> head = Arrays.asList(headArray);
+        String reverse = reverse(head.iterator());
+        log.info("result : {}", reverse);
     }
-    private String reverseTree(String input){
-        String[] inputArray = input.split("");
-        for (int i = 0; i < inputArray.length; i++) {
-            if(inputArray[i].equals("b") || inputArray[i].equals("w")){
-                return inputArray[i];
-            }else{
-                String LU = reverseTree();
-            }
-        }
-        return null;
+
+    private String reverse(Iterator<String> it) {
+        String head = it.next();
+        if (head.equals("b") || head.equals("w"))
+            return head;
+        String upperLeft = reverse(it);
+        String upperRight = reverse(it);
+        String lowerLeft = reverse(it);
+        String lowerRight = reverse(it);
+        return "x" + lowerLeft + lowerRight + upperLeft + upperRight;
     }
 }
