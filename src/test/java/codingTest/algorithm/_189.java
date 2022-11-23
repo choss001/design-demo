@@ -20,13 +20,14 @@ public class _189 {
 //  0111
 //  1011
 
-//  1011
+    //  1011
 //  0111
 //  1100
 //  1100
     @Test
     void test1() {
         String[] headArray = input_2.split("");
+//        String[] headArray = input.split("");
         Iterable<String> head = Arrays.asList(headArray);
         String reverse = reverse(head.iterator());
         log.info("result : {}", reverse);
