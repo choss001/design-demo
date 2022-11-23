@@ -26,7 +26,7 @@ public class _189 {
 //  1100
     @Test
     void test1() {
-        String[] headArray = input.split("");
+        String[] headArray = input_2.split("");
         Iterable<String> head = Arrays.asList(headArray);
         String reverse = reverse(head.iterator());
         log.info("result : {}", reverse);
