@@ -36,17 +36,14 @@ public class _189 {
                 .toArray(Character[]::new);
         Iterable<Character> characters = Arrays.asList(characterArray);
 
-        String input_2 = "xbwxwbbwb";
         decompress(characters.iterator(), 0, 0, MAX_SIZE);
 //        log.info("result : {}", decompressed);
 //        log.info("result : {}", decompressed);
         log.info("result");
-
     }
-
-    private String reverse(Iterator<String> it) {
+    private String reverse(Iterator<String> it){
         String head = it.next();
-        if (head.equals("b") || head.equals("w"))
+        if(head.equals("b")  || head.equals("w"))
             return head;
         String upperLeft = reverse(it);
         String upperRight = reverse(it);
