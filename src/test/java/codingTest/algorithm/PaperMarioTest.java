@@ -8,11 +8,11 @@ import java.util.Stack;
 @Slf4j
 public class PaperMarioTest {
   int[][] board = {
-      {1, 1, 1, 1},
       {1, 1, 0, 1},
-      {1, 1, 1, 1},
-      {0, 0, 0, 1},
       {0, 0, 0, 0},
+      {0, 1, 1, 0},
+      {1, 1, 0, 0},
+      {0, 0, 1, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0},
@@ -23,7 +23,7 @@ public class PaperMarioTest {
   };
 
 
-  int maxCount = 3;
+  int maxCount = 2;
   Stack<String> process = new Stack<>();
 
   @Test
