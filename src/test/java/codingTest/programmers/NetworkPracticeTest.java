@@ -7,8 +7,9 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class NetworkPracticeTest {
     private boolean[] temp;
+
     @Test
-    void network(){
+    void network() {
         log.info("result1 : {}", solution(3, new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}));
         log.info("result2 : {}", solution(3, new int[][]{{1, 1, 0}, {1, 1, 1}, {0, 1, 1}}));
 
@@ -17,17 +18,22 @@ public class NetworkPracticeTest {
     private int solution(int n, int[][] relationShip) {
         temp = new boolean[n];
         int answer = 0;
-        for(int i =0; i < n; i++){
-            answer++;
+        for (int i = 0; i < n; i++) {
+            if (temp[i] == false) {
+                answer++;
+                dfs(n, i, relationShip);
+            }
         }
         return answer;
     }
-    private void dfs(int n,int i, int[][] relationShip){
+
+    private void dfs(int n, int i, int[][] relationShip) {
 
         temp[i] = true;
         for (int j = 0; j < n; j++) {
             if (i != j && relationShip[i][j] == 1) {
-                temp[i] = true;
+                temp[j] = true;
+                dfs(n, i, relationShip);
             }
         }
 
