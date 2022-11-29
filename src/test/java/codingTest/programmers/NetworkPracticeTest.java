@@ -11,6 +11,13 @@ public class NetworkPracticeTest {
     void network(){
         log.info("result1 : {}", solution(3, new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}));
         log.info("result2 : {}", solution(3, new int[][]{{1, 1, 0}, {1, 1, 1}, {0, 1, 1}}));
+        log.info("result3 : {}", solution(5, new int[][]{
+            {1,0,1,0,0},
+            {0,1,0,1,0},
+            {1,0,1,0,0},
+            {0,1,0,1,0},
+            {0,0,0,0,1}
+        }));
 
     }
 
@@ -18,7 +25,9 @@ public class NetworkPracticeTest {
         temp = new boolean[n];
         int answer = 0;
         for(int i =0; i < n; i++){
+            if(!temp[i])
             answer++;
+            dfs(n, i, relationShip);
         }
         return answer;
     }
@@ -27,7 +36,7 @@ public class NetworkPracticeTest {
         temp[i] = true;
         for (int j = 0; j < n; j++) {
             if (i != j && relationShip[i][j] == 1) {
-                temp[i] = true;
+                temp[j] = true;
             }
         }
 
