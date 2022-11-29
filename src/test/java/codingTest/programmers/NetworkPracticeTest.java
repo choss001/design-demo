@@ -31,11 +31,10 @@ public class NetworkPracticeTest {
 
         temp[i] = true;
         for (int j = 0; j < n; j++) {
-            if (i != j && relationShip[i][j] == 1) {
+            if (i != j && relationShip[i][j] == 1 && temp[j] == false) {
                 temp[j] = true;
-                dfs(n, i, relationShip);
+                dfs(n, j, relationShip);
             }
         }
-
     }
 }
