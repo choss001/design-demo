@@ -3,6 +3,9 @@ package codingTest.programmers;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.io.*;
+import java.util.Arrays;
+
 @Slf4j
 public class GameMapShortestPath {
 //  private static int[][] maps = {
@@ -18,7 +21,6 @@ public class GameMapShortestPath {
             {0, 0, 1, 1, 1, 1},
             {1, 1, 1, 1, 1, 1},
             {1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1}
     };
     private static int answer = 9999999;
     private static int count = 1;
@@ -38,6 +40,10 @@ public class GameMapShortestPath {
     }
 
     private void move() {
+        log.info("#################################################");
+//        printMaps();
+        printFile();
+        log.info("#################################################");
         if (x == maps[0].length -1 && y == maps.length -1) {
             answer = Math.min(answer, count);
             return;
@@ -46,6 +52,29 @@ public class GameMapShortestPath {
         moveRight();
         moveDown();
         moveLeft();
+    }
+
+    private void printMaps(){
+        Arrays.stream(maps).forEach(i -> {
+            log.info("{}         x: {}, y: {}",Arrays.toString(i),x,y);
+        });
+    }
+    private void printFile(){
+        File file = new File("C:\\Users\\qsw233\\Desktop\\project\\test.txt");
+        try(FileWriter fileWriter = new FileWriter(file, true)){
+            fileWriter.write("#################################################\n");
+            Arrays.stream(maps).forEach(i -> {
+                String format = String.format("%s         X:%d, Y:%d\n", Arrays.toString(i), x, y);
+                try {
+                    fileWriter.write(format);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void moveUp() {
