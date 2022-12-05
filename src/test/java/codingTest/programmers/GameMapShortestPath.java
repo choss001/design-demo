@@ -29,6 +29,7 @@ public class GameMapShortestPath {
     void solution() {
         int x = 0;
         int y = 0;
+        //주석추가
         move();
         if (answer == 9999999) {
             log.info("restult : {}", -1);
