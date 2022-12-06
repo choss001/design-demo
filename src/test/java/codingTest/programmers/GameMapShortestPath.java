@@ -17,10 +17,11 @@ public class GameMapShortestPath {
 //  };
 
     private static int[][] maps = {
-            {1, 1, 1, 1, 0, 1},
-            {0, 0, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 0, 1, 1},
+            {0, 0, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1}
     };
     private static int answer = 9999999;
     private static int count = 1;
@@ -61,11 +62,12 @@ public class GameMapShortestPath {
         });
     }
     private void printFile(){
-        File file = new File("C:\\Users\\qsw233\\Desktop\\project\\test.txt");
+//        File file = new File("C:\\Users\\qsw233\\Desktop\\project\\test.txt");
+        File file = new File("C:\\Users\\CHLOE\\Desktop\\seongSik\\test.txt");
         try(FileWriter fileWriter = new FileWriter(file, true)){
             fileWriter.write("#################################################\n");
             Arrays.stream(maps).forEach(i -> {
-                String format = String.format("%s         X:%d, Y:%d\n", Arrays.toString(i), x, y);
+                String format = String.format("%s         X:%d, Y:%d, count:%d\n", Arrays.toString(i), x, y, count);
                 try {
                     fileWriter.write(format);
                 } catch (IOException e) {
@@ -122,10 +124,12 @@ public class GameMapShortestPath {
             return false;
         maps[y][x] = 0;
         y -= 1;
+        maps[y][x] = 0;
         return true;
     }
 
     private boolean reverseUp() {
+        maps[y][x] = 1;
         y += 1;
         maps[y][x] = 1;
         return true;
@@ -138,10 +142,12 @@ public class GameMapShortestPath {
             return false;
         maps[y][x] = 0;
         y += 1;
+        maps[y][x] = 0;
         return true;
     }
 
     private boolean reverseDown() {
+        maps[y][x] = 1;
         y -= 1;
         maps[y][x] = 1;
         return true;
@@ -154,9 +160,11 @@ public class GameMapShortestPath {
             return false;
         maps[y][x] = 0;
         x -= 1;
+        maps[y][x] = 0;
         return true;
     }
     private boolean reverseLeft() {
+        maps[y][x] = 1;
         x += 1;
         maps[y][x] = 1;
         return true;
@@ -169,9 +177,11 @@ public class GameMapShortestPath {
             return false;
         maps[y][x] = 0;
         x += 1;
+        maps[y][x] = 0;
         return true;
     }
     private boolean reverseRight() {
+        maps[y][x] = 1;
         x -= 1;
         maps[y][x] = 1;
         return true;
