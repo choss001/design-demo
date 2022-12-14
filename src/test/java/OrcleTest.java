@@ -30,4 +30,26 @@ public class OrcleTest {
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(line);
     }
+
+    @Test
+    void test2() throws FileNotFoundException {
+
+        File file = new File("C:\\Users\\qsw233\\Desktop\\oracle_after.sql");
+        FileReader fileReader = new FileReader(file);
+
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(fileReader);
+
+            String line = reader.readLine();
+            while(line != null){
+
+                log.info("result : {}", line);
+                line = reader.readLine();
+            }
+        } catch (Exception e) {
+            log.info("error", e);
+        }
+
+    }
 }
