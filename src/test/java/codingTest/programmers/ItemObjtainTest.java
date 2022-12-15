@@ -15,7 +15,7 @@ public class ItemObjtainTest {
     private int itemX;
     private int itemY;
 
-    private static final int[][] RECTANGLE = {{1,1,7,4},{3,2,5,5},{4,3,6,9},{2,6,8,8}};
+    private static final int[][] RECTANGLE = {{1, 1, 7, 4}, {3, 2, 5, 5}, {4, 3, 6, 9}, {2, 6, 8, 8}};
     private static final int CHARACTER_X = 1;
     private static final int CHARACTER_Y = 3;
     private static final int ITEM_X = 7;
@@ -23,7 +23,7 @@ public class ItemObjtainTest {
     private static final int result = 17;
 
     @Test
-    void test1(){
+    void test1() {
         int solution = solution(RECTANGLE, CHARACTER_X, CHARACTER_Y, ITEM_X, ITEM_Y);
         log.info("restul : {}", solution);
 
@@ -36,7 +36,7 @@ public class ItemObjtainTest {
         int[][] multipleTwo = multipleTwo(rectangle);
         makeMap(multipleTwo);
         colorMap(multipleTwo);
-        allMap[characterY][characterX] = 9;
+        allMap[characterY * 2][characterX * 2] = 9;
         move(characterX * 2, characterY * 2);
         for (int i = 49; i >= 0; i--) {
             for (int j = 0; j < 50; j++) {
@@ -51,34 +51,42 @@ public class ItemObjtainTest {
     }
 
     private void move(int characterX, int characterY) {
-        if (characterX == itemX && characterY == itemY) {
-            answer = Math.min(allMap[characterY][characterX] - 1, answer);
-            return;
-        }
         Queue<int[]> queue = new LinkedList<>();
+        int count = 0;
+        queue.add(new int[]{characterX, characterY, count});
+        while (!queue.isEmpty()) {
+            int[] poll = queue.poll();
+            int dx = poll[0];
+            int dy = poll[1];
+            count = poll[2];
 
-        int dx = characterX;
-        int dy = characterY;
-        queue.add(new int[]{});
-        while(!queue.isEmpty()){
             for (int i = 0; i < 4; i++) {
+//                System.out.printf("dx : %d, dy : %d, ITEM_X : %d, ITEM_Y : %d\n", dx,dy,ITEM_X *2,ITEM_Y *2);
+                if (dx == (ITEM_X * 2) && dy == (ITEM_Y * 2)) {
+//                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    answer = Math.min(count, answer);
+                    continue;
+                }
+
                 if (allMap[dy + y[i]][dx + x[i]] == 1) {
-                    queue.add(new int[]{dx, dy, 1});
                     dy += y[i];
                     dx += x[i];
+                    queue.add(new int[]{dx, dy, ++count});
                     allMap[dy][dx] += 5;
                 }
             }
         }
+
     }
 
-    private int[][] multipleTwo(int[][] rectangle){
+    private int[][] multipleTwo(int[][] rectangle) {
         int[][] multipleRec = new int[rectangle.length][4];
         for (int i = 0; i < rectangle.length; i++)
-            for(int j=0; j < 4; j++)
+            for (int j = 0; j < 4; j++)
                 multipleRec[i][j] = 2 * rectangle[i][j];
         return multipleRec;
     }
+
     private void makeMap(int[][] rectangle) {
         for (int i = 0; i < rectangle.length; i++) {
             //아래
