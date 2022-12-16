@@ -69,10 +69,8 @@ public class ItemObjtainTest {
                 }
 
                 if (allMap[dy + y[i]][dx + x[i]] == 1) {
-                    dy += y[i];
-                    dx += x[i];
-                    queue.add(new int[]{dx, dy, ++count});
-                    allMap[dy][dx] += 5;
+                    queue.add(new int[]{dx + x[i], dy + y[i], ++count});
+                    allMap[dy + y[i]][dx + x[i]] += 5;
                 }
             }
         }
