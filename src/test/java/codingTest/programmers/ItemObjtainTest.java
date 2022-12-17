@@ -10,7 +10,7 @@ import java.util.Queue;
 public class ItemObjtainTest {
     private int[] y = {1, 0, -1, 0};
     private int[] x = {0, 1, 0, -1};
-    private static int[][] allMap = new int[50][50];
+    private static int[][] allMap = new int[100][100];
     private int answer = Integer.MAX_VALUE;
     private int itemX;
     private int itemY;
