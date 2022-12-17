@@ -26,7 +26,6 @@ public class ItemObjtainTest {
     void test1() {
         int solution = solution(RECTANGLE, CHARACTER_X, CHARACTER_Y, ITEM_X, ITEM_Y);
         log.info("restul : {}", solution);
-
     }
 
     public int solution(int[][] rectangle, int characterX, int characterY, int itemX, int itemY) {
@@ -43,11 +42,8 @@ public class ItemObjtainTest {
                 System.out.print(allMap[i][j]);
             }
             System.out.println();
-
         }
-
-
-        return answer;
+        return answer/2;
     }
 
     private void move(int characterX, int characterY) {
@@ -74,7 +70,6 @@ public class ItemObjtainTest {
                 }
             }
         }
-
     }
 
     private int[][] multipleTwo(int[][] rectangle) {
