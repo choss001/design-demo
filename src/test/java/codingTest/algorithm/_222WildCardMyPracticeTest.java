@@ -11,26 +11,28 @@ public class _222WildCardMyPracticeTest {
     private int[][] cache = new int[101][101];
 
     @Test
-    void test(){
-        boolean match = match();
+    void test() {
+        boolean match = match(W, S);
         log.info("result : {}", match);
     }
-    private boolean match(String w, String s){
+
+    private boolean match(String w, String s) {
         int pos = 0;
-         while(pos < w.length() && pos < s.length()
-                 && (w.charAt(pos) == s.charAt(pos))){
-             ++pos;
-         }
-         if(pos == w.length() && pos == s.length())
+        while (pos < w.length() && pos < s.length()
+                && (w.charAt(pos) == '?' || w.charAt(pos) == s.charAt(pos))) {
+            ++pos;
+        }
+        if (pos == w.length() && pos == s.length())
             return true;
 
-         if(w.charAt(pos) == '*'){
-             for(int i =0; i < w.length(); i++){
-                if(match("S","W"))
+        //pos +
+        if (w.charAt(pos) == '*') {
+            for (int i = pos; i < w.length(); i++) {
+                if (match(w.substring(pos + 1), s.substring()))
                     return true;
-             }
-         }
-         return false;
+            }
+        }
+        return false;
     }
 
     /**
