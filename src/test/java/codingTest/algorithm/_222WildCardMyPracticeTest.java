@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class _222WildCardMyPracticeTest {
 
-    private static final String W = "*bb*";
+    private static final String W = "a*b*ds*d";
     private static final String S = "abbccedssb";
     private int[][] cache = new int[101][101];
 
@@ -22,16 +22,19 @@ public class _222WildCardMyPracticeTest {
                 && (w.charAt(pos) == '?' || w.charAt(pos) == s.charAt(pos))) {
             ++pos;
         }
-        if (pos == w.length() && pos == s.length())
+        if(pos == w.length())
             return true;
 
-        //pos +
+        //
         if (w.charAt(pos) == '*') {
-            for (int i = pos; i < w.length(); i++) {
-                if (match(w.substring(pos + 1), s.substring()))
+            if(pos == w.length() -1)
+                return true;
+            for (int i = 1; pos + i < s.length(); i++) {
+                if (match(w.substring(pos + 1), s.substring(pos + i)))
                     return true;
             }
         }
+        //3 *bc pos =0
         return false;
     }
 
