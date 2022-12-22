@@ -14,6 +14,7 @@ public class _157PJongManBook {
   boolean[] taken = {false, false, false, false, false, false, false, false, false, false};
   boolean[][] areFriends = new boolean[10][10];
   int student;
+  //테스트
 
   @Test
   void test1() {
