@@ -8,6 +8,7 @@ public class _222WildCard {
 
     String W;
     String S;
+    private static int count = 0;
     @Test
     void test1(){
         String wildCard = "*bb*";
@@ -16,15 +17,17 @@ public class _222WildCard {
         W = wildCard;
         S = word;
 
-//        boolean match = match(wildCard, word);
+        boolean match = match(wildCard, word);
         cacheset();
 //        boolean match = matchMemoized(0, 0);
-        boolean match = matchMemoizedBetter(0, 0);
+//        boolean match = matchMemoizedBetter(0, 0);
         log.info("result : {}", match);
+        log.info("count : {}", count);
 
     }
 
     private boolean match(String w, String s) {
+        count++;
         int pos =0;
 //        String[] wArray = w.split("");
 ////        String[] sArray = s.split("");
@@ -44,6 +47,7 @@ public class _222WildCard {
     int[][] cache = new int[101][101];
 
     private boolean matchMemoized(int w, int s) {
+        count++;
         int ret = cache[w][s];
         if(ret != -1) return cache[w][w] == 1 ? true : false;
         while (s < S.length() && w < W.length() &&
