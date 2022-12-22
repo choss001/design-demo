@@ -6,17 +6,22 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class _222WildCardMyPracticeTest {
 
-    private static final String W = "a*b*ds*d";
+//    private static final String W = "a*b*c*e*b";
+    private static final String W = "a*b*ce*x";
     private static final String S = "abbccedssb";
     private int[][] cache = new int[101][101];
+    private static int count = 0;
 
     @Test
     void test() {
         boolean match = match(W, S);
         log.info("result : {}", match);
+        log.info("match method count : {}", count);
     }
 
     private boolean match(String w, String s) {
+        count++;
+        makeCache();
         int pos = 0;
         while (pos < w.length() && pos < s.length()
                 && (w.charAt(pos) == '?' || w.charAt(pos) == s.charAt(pos))) {
@@ -30,12 +35,23 @@ public class _222WildCardMyPracticeTest {
             if(pos == w.length() -1)
                 return true;
             for (int i = 1; pos + i < s.length(); i++) {
-                if (match(w.substring(pos + 1), s.substring(pos + i)))
-                    return true;
+                if(cache[pos+1][pos+i] == -1){
+                    if (match(w.substring(pos + 1), s.substring(pos + i))){
+                        cache[pos+1][pos+i] = 1;
+                        return true;
+                    }
+                }else
+                    return cache[pos+1][pos+i] == 1 ? true : false;
             }
         }
         //3 *bc pos =0
+        cache[pos][pos] = -1;
         return false;
+    }
+    private void makeCache(){
+        for(int i = 0; i < cache.length; i++)
+            for(int j =0; j< cache.length; j++)
+                cache[i][j] = -1;
     }
 
     /**
