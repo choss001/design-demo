@@ -19,6 +19,7 @@ public class _197 {
         log.info("restult : {}", solve);
     }
 
+//    int[] h = {1, 4, 4, 4, 4, 1, 1};
     private int solve(int left, int right) {
         if (left == right) return h[left];
         int mid = (left + right) / 2;
