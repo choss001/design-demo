@@ -3,6 +3,9 @@ package codingTest.algorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 public class _222WildCardMyPracticeTest {
 
@@ -77,6 +80,11 @@ public class _222WildCardMyPracticeTest {
         for (int i = 0; i < cache.length; i++)
             for (int j = 0; j < cache.length; j++)
                 cache[i][j] = -1;
+    }
+
+    @Test
+    void test2(){
+        List<String> list = new ArrayList<>();
     }
 
     /**
