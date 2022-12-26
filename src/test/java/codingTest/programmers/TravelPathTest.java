@@ -1,7 +1,9 @@
 package codingTest.programmers;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class TravelPathTest {
 
@@ -15,8 +17,6 @@ public class TravelPathTest {
 
     private static List<String> answerList = new ArrayList<>();
 
-
-    private static List<String> answerList = new ArrayList<>();
 
     public String[] solution(String[][] tickets) {
         String[] answer = {};
