@@ -12,20 +12,20 @@ public class TravelPathTest_2 {
 
     private static List<List<Integer>> answerIntegerList = new ArrayList<>();
     private static List<List<String>> answerStringList = new ArrayList<>();
-    @Test
 
+    @Test
     void test1() {
         recursive(tickets);
-        for (List<Integer> temp : answerIntegerList)
-            System.out.println(temp);
+//        for (List<Integer> temp : answerIntegerList)
+//            System.out.println(temp);
 
-        convertString();
+        convertString(tickets);
         for (List<String> temp : answerStringList)
             System.out.println(temp);
         sortAndRemove();
 
         for (List<String> temp : answerStringList)
-            System.out.println(temp);
+            System.out.println("result : " + temp);
 
     }
 
@@ -62,46 +62,48 @@ public class TravelPathTest_2 {
         }
     }
 
-    private void convertString() {
-        for(int i =0; i < answerIntegerList.size(); i++){
+    private void convertString(String[][] tickets) {
+        for (int i = 0; i < answerIntegerList.size(); i++) {
             List<String> tempStringList = new ArrayList<>();
-            for(int j =0; j < answerIntegerList.get(0).size(); j++){
+            for (int j = 0; j < answerIntegerList.get(0).size(); j++) {
                 tempStringList.add(tickets[answerIntegerList.get(i).get(j)][0]);
+                if (j == answerIntegerList.get(0).size() - 1)
+                    tempStringList.add(tickets[answerIntegerList.get(i).get(j)][1]);
             }
-            tempStringList.add(tickets[tickets.length -1][1]);
             answerStringList.add(tempStringList);
         }
     }
-    private void sortAndRemove(){
-        while(answerStringList.size() != 1){
-            for(int i =0; i < answerStringList.get(0).size(); i++){
-                if(answerStringList.get(0).get(i).charAt(0) <
-                        answerStringList.get(1).get(i).charAt(0)){
+
+    private void sortAndRemove() {
+        while (answerStringList.size() != 1) {
+            for (int i = 0; i < answerStringList.get(0).size(); i++) {
+                if (answerStringList.get(0).get(i).charAt(0) <
+                        answerStringList.get(1).get(i).charAt(0)) {
                     answerStringList.remove(1);
                     break;
-                }else if(answerStringList.get(0).get(i).charAt(0) >
-                        answerStringList.get(1).get(i).charAt(0)){
+                } else if (answerStringList.get(0).get(i).charAt(0) >
+                        answerStringList.get(1).get(i).charAt(0)) {
                     answerStringList.remove(0);
                     break;
                 }
 
-                if(answerStringList.get(0).get(i).charAt(1) <
-                        answerStringList.get(1).get(i).charAt(1)){
+                if (answerStringList.get(0).get(i).charAt(1) <
+                        answerStringList.get(1).get(i).charAt(1)) {
                     answerStringList.remove(1);
                     break;
-                }else if(answerStringList.get(0).get(i).charAt(1) >
-                        answerStringList.get(1).get(i).charAt(1)){
+                } else if (answerStringList.get(0).get(i).charAt(1) >
+                        answerStringList.get(1).get(i).charAt(1)) {
                     answerStringList.remove(0);
                     break;
 
                 }
 
-                if(answerStringList.get(0).get(i).charAt(2) <
-                        answerStringList.get(1).get(i).charAt(2)){
+                if (answerStringList.get(0).get(i).charAt(2) <
+                        answerStringList.get(1).get(i).charAt(2)) {
                     answerStringList.remove(1);
                     break;
-                }else if(answerStringList.get(0).get(i).charAt(2) >
-                        answerStringList.get(1).get(i).charAt(2)){
+                } else if (answerStringList.get(0).get(i).charAt(2) >
+                        answerStringList.get(1).get(i).charAt(2)) {
                     answerStringList.remove(0);
                     break;
 
