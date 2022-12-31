@@ -19,13 +19,12 @@ public class _226 {
     private int y = 0;
     private int x = 0;
     private int answer = 0;
-    private int[] dy = {1, 0};
+    private int[] dy = {1, 1};
     private int[] dx = {0, 1};
 
     @Test
     void test1() {
         solution(triangle, x, y);
-        Collections.sort();
         log.info("last answer!!!! : {}", answer);
     }
 
