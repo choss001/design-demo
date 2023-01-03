@@ -1,7 +1,7 @@
 package identityStrategy;
 
 import com.example.demo.DemoApplication;
-import com.example.demo.identityStrategy.RestaurantOrderSequence;
+import com.example.demo.design.identityStrategy.RestaurantOrderSequence;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.Test;
