@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Slf4j
@@ -26,12 +27,17 @@ public class FillPuzzlePieces {
             {1, 1, 0, 1, 1, 0},
             {0, 1, 0, 0, 0, 0}
     };
-    private int[][][] puzzleArray;
-    private List<int[][]> puzzleList = new ArrayList<>();
+    private List<int[][]>  puzzleList = new ArrayList<>();
+    //used for cache that memorized checking once value
     private boolean[][] usedCheck;
     private int[] xMove = {1, 0, -1, 0};
     private int[] yMove = {0, 1, 0, -1};
 
+
+    //this value use for get empty row and column
+    List<HashSet<Integer>> rowList = new ArrayList<>();
+    List<HashSet<Integer>> columnList = new ArrayList<>();
+    
     @Test
     void test() {
 
@@ -52,18 +58,42 @@ public class FillPuzzlePieces {
             }
             System.out.println();
         }
+        cutEmptyPuzzle();
         return answer;
     }
     private void cutEmptyPuzzle(){
-        for(int i =0; i < puzzleList.size(); i++){
-            int[][] puzzleArray = puzzleList.get(0);
-            for(int j =0; j < puzzleArray.length; j++){
-                for(int k = 0; k < puzzleArray[0].length; k++){
-                    if(puzzleArray[j][k] == 1){
 
-                    }
+        for(int i =0; i < puzzleList.size(); i++){
+            int[][] puzzleArray = puzzleList.get(i);
+            HashSet<Integer> row = new HashSet<>();
+            HashSet<Integer> column = new HashSet<>();
+            for(int j =0; j < puzzleArray.length; j++){
+                boolean tempRowFlag = true;
+                boolean tempColumnFlag = true;
+                Integer tempColumn = 0;
+                for(int k = 0; k < puzzleArray[0].length; k++){
+                    if(puzzleArray[j][k] == 1)
+                        tempRowFlag = false;
+                    if(puzzleArray[k][j] == 1)
+                        tempColumnFlag = false;
+
                 }
+                if(tempRowFlag)
+                    row.add(j);
+                if(tempColumnFlag)
+                    column.add(j);
             }
+            rowList.add(row);
+            columnList.add(column);
+        }
+        System.out.print("row : ");
+        for(int i =0; i < rowList.size(); i++){
+            System.out.print(rowList.get(i));
+        }
+        System.out.println();
+        System.out.print("column : ");
+        for(int i =0; i < columnList.size(); i++){
+            System.out.print(columnList.get(i));
         }
     }
 
@@ -101,5 +131,4 @@ public class FillPuzzlePieces {
 
     private void turnPuzzlePiece(){
 
-    }
-}
+    }}
