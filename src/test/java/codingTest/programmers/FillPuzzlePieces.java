@@ -37,7 +37,7 @@ public class FillPuzzlePieces {
     //this value use for get empty row and column
     List<HashSet<Integer>> rowList = new ArrayList<>();
     List<HashSet<Integer>> columnList = new ArrayList<>();
-    
+
     @Test
     void test() {
 
