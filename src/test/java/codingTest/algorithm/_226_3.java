@@ -22,7 +22,6 @@ public class _226_3 {
     void test1() {
         initialCache();
         log.info("result : {}", path1(0, 0));
-
     }
     private void initialCache(){
         for(int i =0; i< 100; i++)
@@ -37,6 +36,4 @@ public class _226_3 {
         return cache[y][x] = max(path1(y+1, x), path1(y+1, x+1))
                 + triangle[y][x];
     }
-
-
 }

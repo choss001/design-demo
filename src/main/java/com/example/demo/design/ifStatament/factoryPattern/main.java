@@ -8,5 +8,6 @@ public class main {
         Calculator calculator = new Calculator();
         int divided = calculator.calculateUsingFactory(13, 6, "divide");
         log.info("result : {}", divided);
+
     }
 }
