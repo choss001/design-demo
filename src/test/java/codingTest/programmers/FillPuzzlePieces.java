@@ -25,6 +25,11 @@ public class FillPuzzlePieces {
             {1, 1, 0, 1, 1, 0},
             {0, 1, 0, 0, 0, 0}
     };
+    @Test
+    void test() {
+
+    }
+
     //used for each puzzle array
     private List<int[][]>  puzzleList = new ArrayList<>();
     private boolean[][] usedCheck;
@@ -37,30 +42,56 @@ public class FillPuzzlePieces {
     List<int[][]> compactPuzzleList = new ArrayList();
     List<int[][]> turnedPuzzleList = new ArrayList();
 
-    @Test
-    void test() {
-
-    }
+    //is used gameBoard empty block check in method that name getGameEmptyBlock
+    private boolean[][] usedCheckGameBoard;
 
     public int solution(int[][] game_board, int[][] table) {
         usedCheck = new boolean[table.length][table[0].length];
         int answer = -1;
         getPuzzlePiece(table);
-        System.out.println("puzzleList size () : "+ puzzleList.size());
-        for(int x =0; x < puzzleList.size(); x++){
-            int[][] getPuzzleArray = puzzleList.get(x);
-            for(int i = 0; i < table.length; i++){
-                System.out.println();
-                for( int j =0; j < table[0].length; j ++){
-                    System.out.printf("%d ", getPuzzleArray[i][j]);
-                }
-            }
-            System.out.println();
-        }
+
         getEmptyPuzzleRowColumn();
         cutEmptyPuzzle();
         makeTurnPuzzlePiece();
+        System.out.println("turned Puzzle list size () :"+turnedPuzzleList.size());
+//      printTurnedPuzzle();
+        List<int[]> emptyArray = new ArrayList<>();
+        boolean[][] usedCheckEmpty = new boolean[game_board.length][game_board[0].length];
+        List<int[]> valueResult = getGameEmptyBlock(2, 0, game_board, emptyArray, usedCheckEmpty);
+        for(int i =0; i < valueResult.size(); i++){
+            int[] tempArray = valueResult.get(i);
+            System.out.printf("x : %d   y : %d\n", tempArray[0], tempArray[1]);
+        }
         return answer;
+    }
+    private void printTurnedPuzzle(){
+        for(int i = 0; i< turnedPuzzleList.size(); i++){
+            int[][] turnedPuzzle = turnedPuzzleList.get(i);
+
+            System.out.println();
+            for(int j= 0; j < turnedPuzzle.length; j++){
+                System.out.println();
+                for(int k =0; k < turnedPuzzle[0].length; k++){
+                    System.out.printf("%d ",turnedPuzzle[j][k]);
+                }
+            }
+        }
+    }
+    private List<int[]> getGameEmptyBlock(int x, int y, int[][] gameBoard, List<int[]> emptyArray, boolean[][] usedCheck){
+        for(int k = 0; k < 4; k++){
+            int dx = x + xMove[k];
+            int dy = y + yMove[k];
+            if(dx < 0 || dx >= gameBoard[0].length ||
+                    dy < 0 || dy >= gameBoard.length)
+                continue;
+            if(gameBoard[dy][dx] == 0 && usedCheck[dy][dx] == false){
+                emptyArray.add(new int[]{dx, dy});
+                usedCheck[dy][dx] = true;
+                getGameEmptyBlock(dx, dy, gameBoard, emptyArray, usedCheck);
+            }
+
+        }
+        return emptyArray;
     }
 
     private void getEmptyPuzzleRowColumn(){
@@ -87,15 +118,6 @@ public class FillPuzzlePieces {
             rowList.add(row);
             columnList.add(column);
         }
-//      System.out.print("row : ");
-//      for(int i =0; i < rowList.size(); i++){
-//          System.out.print(rowList.get(i));
-//      }
-//      System.out.println();
-//      System.out.print("column : ");
-//      for(int i =0; i < columnList.size(); i++){
-//          System.out.print(columnList.get(i));
-//      }
     }
 
     private void cutEmptyPuzzle(){
@@ -115,14 +137,6 @@ public class FillPuzzlePieces {
                 columnValue++;
             }
 
-            //print new PuzzleArray
-//          for(int l = 0; l < newPuzzleArray.length; l++){
-//              System.out.println();
-//              for(int m = 0; m < newPuzzleArray[0].length; m++){
-//                  System.out.printf("%d ",newPuzzleArray[l][m]);
-//              }
-//          }
-//          System.out.println("\n##########################");
             compactPuzzleList.add(newPuzzleArray);
         }
     }
@@ -163,14 +177,13 @@ public class FillPuzzlePieces {
         for(int h = 0; h < compactPuzzleList.size(); h++){
 
             int[][] turnedPuzzle = turnPuzzlePiece(compactPuzzleList.get(h));
-
-            System.out.println();
-            for(int i = 0; i < turnedPuzzle.length; i++){
-                System.out.println();
-                for(int j =0; j < turnedPuzzle[0].length; j++){
-                    System.out.printf("%d ",turnedPuzzle[i][j]);
-                }
-            }
+            turnedPuzzleList.add(turnedPuzzle);
+            turnedPuzzle = turnPuzzlePiece(turnedPuzzle);
+            turnedPuzzleList.add(turnedPuzzle);
+            turnedPuzzle = turnPuzzlePiece(turnedPuzzle);
+            turnedPuzzleList.add(turnedPuzzle);
+            turnedPuzzle = turnPuzzlePiece(turnedPuzzle);
+            turnedPuzzleList.add(turnedPuzzle);
 
         }
 
@@ -183,5 +196,4 @@ public class FillPuzzlePieces {
             }
         }
         return turnedPuzzle;
-    }
-}
+    }}
