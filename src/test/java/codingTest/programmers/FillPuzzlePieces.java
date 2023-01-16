@@ -30,9 +30,8 @@ public class FillPuzzlePieces {
     void test() {
 
     }
-
     //used for each puzzle array
-    private List<int[][]> puzzleList = new ArrayList<>();
+    private List<int[][]>  puzzleList = new ArrayList<>();
     private boolean[][] usedCheck;
     private int[] xMove = {1, 0, -1, 0};
     private int[] yMove = {0, 1, 0, -1};
@@ -48,6 +47,7 @@ public class FillPuzzlePieces {
 
     private int answer = -1;
 
+    //used for each puzzle array
     public int solution(int[][] game_board, int[][] table) {
         usedCheck = new boolean[table.length][table[0].length];
         int answer = -1;
@@ -66,7 +66,7 @@ public class FillPuzzlePieces {
 
         boolean[] turnedArrayUsedCheck = new boolean[turnedPuzzleList.size()];
         boolean[][] blankUsedCheck = new boolean[game_board.length][game_board[0].length];
-        correspondBlockFind(game_board, turnedArrayUsedCheck, 0, 0, blankUsedCheck);
+//      correspondBlockFind(game_board, turnedArrayUsedCheck, 0, 0, blankUsedCheck);
         for (int i = 0; i < valueResult.size(); i++) {
             int[] tempArray = valueResult.get(i);
             System.out.printf("x : %d   y : %d\n", tempArray[0], tempArray[1]);
