@@ -28,7 +28,7 @@ public class FillPuzzlePieces {
 
     @Test
     void test() {
-
+        solution(game_board, table);
     }
     //used for each puzzle array
     //used for each puzzle array
@@ -55,30 +55,11 @@ public class FillPuzzlePieces {
         getEmptyPuzzleRowColumn();
         cutEmptyPuzzle();
         makeTurnPuzzlePiece();
-        printTurnedPuzzle();
-//      int[] rangeArray = getBooleanRange(5);
-//      int[][] game_board_test = {
-//          {1,1,0,0,1,0},
-//          {0,0,1,0,1,0},
-//          {0,1,1,0,0,1},
-//          {1,1,0,1,1,1},
-//          {1,0,0,0,1,0},
-//          {0,1,1,1,0,0}
-//      };
-
-//      List<int[]> emptyArray = new ArrayList<>();
-//      emptyArray.add(new int[]{5, 4});
-//      boolean[][] usedCheckEmpty = new boolean[game_board_test.length][game_board_test[0].length];
-//      usedCheckEmpty[4][5] = true;
-//      List<int[]> valueResult = getGameEmptyBlock(5, 4, game_board_test, emptyArray, usedCheckEmpty);
-//
+//        printTurnedPuzzle();
         boolean[] turnedArrayUsedCheck = new boolean[turnedPuzzleList.size()];
         boolean[][] blankUsedCheck = new boolean[game_board.length][game_board[0].length];
         correspondBlockFind(game_board, turnedArrayUsedCheck, 0, 0, blankUsedCheck);
-//      for(int i =0; i < valueResult.size(); i++){
-//          int[] tempArray = valueResult.get(i);
-//          System.out.printf("\nx : %d   y : %d", tempArray[0], tempArray[1]);
-//      }
+        System.out.println("result : "+ answer);
         return answer;
     }
     private void printTurnedPuzzle(){
@@ -118,19 +99,15 @@ public class FillPuzzlePieces {
                 if(i == game_board.length -1 &&
                         j == game_board[0].length -1){
                     answer = Math.max(answer, 0);
-//                  System.out.print("\n-------------------");
                     int count = 0;
                     for(int k =0; k < blankUsedCheck.length; k++){
-//                      System.out.println();
                         for(int l =0; l < blankUsedCheck[0].length; l++){
-//                          System.out.printf("%b ", blankUsedCheck[k][l]);
                             if(blankUsedCheck[k][l])
                                 count++;
                         }
                     }
                     answer = Math.max(answer, count);
                     return;
-//                  System.out.println("\n-------------------");
                 }
                 if(game_board[i][j] == 0 && !blankUsedCheck[i][j]){
                     //빈 블랭크 범위 찾는 로직
@@ -145,19 +122,15 @@ public class FillPuzzlePieces {
                         int[][] turnedPuzzleArray = turnedPuzzleList.get(k);
                         if(turnedPuzzleArray[0].length == (maxMinValue[1] - maxMinValue[0] + 1) &&
                                 turnedPuzzleArray.length == (maxMinValue[3] - maxMinValue[2] + 1) &&
-                                !blankUsedCheck[i][j]){
+                                !turnedArrayUsedCheck[k]){
                             if(checkAllBlankBlock(maxMinValue,game_board,turnedPuzzleArray)){
                                 int[] rangeArray = getBooleanRange(k);
                                 usedCheckblankBooleanSetTrue(valueResult, blankUsedCheck);
-                                System.out.printf("\n %d\n",k);
-                                for(int m =0; m < blankUsedCheck.length; m++){
-                                    System.out.printf("%b", blankUsedCheck[m]);
-                                }
                                 turnedArrayUsedCheck[rangeArray[0]] = true;
                                 turnedArrayUsedCheck[rangeArray[1]] = true;
                                 turnedArrayUsedCheck[rangeArray[2]] = true;
                                 turnedArrayUsedCheck[rangeArray[3]] = true;
-                                correspondBlockFind(game_board, turnedArrayUsedCheck, i + 1, j + 1, blankUsedCheck);
+                                correspondBlockFind(game_board, turnedArrayUsedCheck, i, j+1 == 6 ? 1 : j+1, blankUsedCheck);
                                 usedCheckblankBooleanSetFalse(valueResult, blankUsedCheck);
                                 turnedArrayUsedCheck[rangeArray[0]] = false;
                                 turnedArrayUsedCheck[rangeArray[1]] = false;
