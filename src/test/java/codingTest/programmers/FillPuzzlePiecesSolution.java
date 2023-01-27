@@ -66,6 +66,7 @@ class Solution {
         return answer;
     }
 
+    //블럭 찾기
     public int findBlock(List<List<int[]>> board, List<List<int[]>> table) {
         int size = 0;
         int tableLen = table.size();
