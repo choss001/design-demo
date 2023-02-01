@@ -1,38 +1,61 @@
 package codingTest.programmers;
 
 public class KakaoEmoticonPercentageTest {
-    private int[] answerArray = new int[2];
-    private int[] percents = new int[4];
+    private int[] percentages = {40, 30, 20, 10};
     private int[][] users;
     private int[] emoticons;
+    private int[] answer = new int[2];
     public int[] solution(int[][] users, int[] emoticons) {
-        setPercents();
         this.users = users;
         this.emoticons = emoticons;
 
-        int[] answer = {};
+        recursive(new ArrayList<>(), 0);
+
         return answer;
     }
-    private void recursive(int nextTarget, int[] tempAnswer){
-        int localPercents;
-        for(int i = 0; i < 4; i ++){
-            localPercents = percents[i];
+
+    private void recursive(List<Integer> emoticonPer, int position){
+        if(position == emoticons.length){
+            calculateUser(emoticonPer);
+            return;
         }
-        recursive(nextTarget + 1, tempAnswer);
+
+        for(int i =0; i < 4; i ++){
+            emoticonPer.add(percentages[i]);
+            recursive(emoticonPer, position +1);
+            emoticonPer.remove(position);
+        }
     }
 
-    private void calcurate(int localPercents, int nextTarget, int[] tempAnswer){
-        if(users[nextTarget][0] <= localPercents){
-            for(int i =0; i < emoticons.length; i++){
-
+    private void calculateUser(List<Integer> emoticonPer){
+        int[] tempAnswer = new int[2];
+        for(int i = 0; i < users.length; i++){
+            int totalCost = 0;
+            for(int j = 0; j < emoticonPer.size(); j++){
+                int percent = emoticonPer.get(j);
+                int beforePrice = emoticons[j];
+                if(percent >= users[i][0]){
+//                  System.out.println("result : "+ (beforePrice * (100 - percent))/100);
+                    totalCost += (beforePrice * (100 - percent))/100;
+                }
+            }
+            if(totalCost >= users[i][1]){
+                tempAnswer[0] += 1;
+                tempAnswer[1] += totalCost;
             }
         }
+        comparison(tempAnswer);
     }
 
-    private void setPercents(){
-        percents[0] = 40;
-        percents[1] = 30;
-        percents[2] = 20;
-        percents[3] = 10;
+    private void comparison(int[] tempAnswer){
+        if(tempAnswer[0] > answer[0]){
+            answer[0] = tempAnswer[0];
+            answer[1] = tempAnswer[1];
+        }else if(tempAnswer[0] == answer[0]){
+            if(tempAnswer[1] > answer[1]){
+                answer[0] = tempAnswer[0];
+                answer[1] = tempAnswer[1];
+            }
+        }
     }
 }
