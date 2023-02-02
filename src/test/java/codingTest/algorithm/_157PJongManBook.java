@@ -15,7 +15,7 @@ public class _157PJongManBook {
   boolean[][] areFriends = new boolean[10][10];
   int student;
   //테스트
-
+//두번째 테스트
   @Test
   void test1() {
     testcase = 1;
