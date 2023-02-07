@@ -10,6 +10,8 @@ public class DevliveryAndPickupTest {
         this.pickups = pickups;
 
         long answer = -1;
+
+        //주석
         return answer;
     }
     private void goStart(){
