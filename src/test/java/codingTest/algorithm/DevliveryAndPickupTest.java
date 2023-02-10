@@ -4,45 +4,50 @@ public class DevliveryAndPickupTest {
     private int cap;
     private int[] deliveries;
     private int[] pickups;
+    private long answer;
     public long solution(int cap, int n, int[] deliveries, int[] pickups) {
         this.cap = cap;
         this.deliveries = deliveries;
         this.pickups = pickups;
 
-        long answer = -1;
-
-        //주석
+        goStart();
         return answer;
     }
     private void goStart(){
-        boolean end = false;
-        int deliver = cap;
-        int goLength = 0;
+        boolean end = true;
         while(end){
-            for(int i =0; i < deliveries.length; i++){
-                int delTemp = deliveries[i];
-                deliveries[i] = calMinus(delTemp, deliver);
-                deliver = calMinus(deliver, delTemp);
-                if(deliver ==0){
-                    goLength = i+1;
-                    break;
-                }
-
-            }
-
+            int deliverLength = calLength(deliveries);
+            int pickupLength = calLength(pickups);
+            answer += Math.max(deliverLength, pickupLength) * 2;
+            end = isNotFinish();
         }
     }
-//  private int calLength(int[] targetArray){
-//      for(int i =0; i < deliveries.length; i++){
-//          int delTemp = targetArray[i];
-//          targetArray[i] = calMinus(delTemp, deliver);
-//          deliver = calMinus(deliver, delTemp);
-//          if(deliver ==0){
-//              goLength = i+1;
-//              break;
-//          }
-//      }
-//  }
+
+    private boolean isNotFinish(){
+        for(int i =0; i < deliveries.length; i++){
+            if(0 < deliveries[i] || 0 < pickups[i])
+                return true;
+        }
+        return false;
+    }
+
+    private int calLength(int[] targetArray){
+        int tempCap = cap;
+        int tempLastPoint = 0;
+        for(int i =0; i < targetArray.length; i++){
+            int delTemp = targetArray[i];
+            if(delTemp != 0)
+                tempLastPoint = i+1;
+            targetArray[i] = calMinus(delTemp, tempCap);
+            tempCap = calMinus(tempCap, delTemp);
+            if(tempCap ==0)
+                return i+1;
+            if(i == targetArray.length -1)
+                return i;
+        }
+        System.out.println("why : " + tempCap);
+        return 9999999;
+    }
 
     private int calMinus(int target, int component){
         if(target > component)
