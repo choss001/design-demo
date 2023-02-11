@@ -4,19 +4,41 @@ package codingTest.algorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 @Slf4j
 public class BinarySearch {
 
   private final static int[] arr = new int[250000001];
+  private int[] inputArray = {1,200,3,2,50,60,70,26,34,60};
 
   @Test
   void test1(){
-    for(int i = 0; i<arr.length; i++){
-      arr[i] = i;
-    }
-    int i = binarySearch1(230000000, 0, 250000000);
-    log.info("test : {}", i);
+//    for(int i = 0; i<arr.length; i++){
+//      arr[i] = i;
+//    }
+//    int i = binarySearch1(230000000, 0, 250000000);
+//    log.info("test : {}", i);
+    Arrays.sort(inputArray);
+    log.info("result : {}", inputArray);
 
+  }
+  int binarySearch2(int[] inputArray, int target){
+    int first = 0;
+    int last = inputArray.length -1;
+    int mid = inputArray.length/2;
+
+    while(true){
+      if(inputArray[mid] > target){
+        mid =
+
+      }else if(inputArray[mid] < target){
+
+      }else{
+
+      }
+    }
   }
 
   int binarySearch1(int key, int low, int high) {
@@ -38,4 +60,5 @@ public class BinarySearch {
 
     return -1; // 탐색 실패
   }
+
 }
