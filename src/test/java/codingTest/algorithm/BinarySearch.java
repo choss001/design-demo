@@ -22,23 +22,27 @@ public class BinarySearch {
 //    log.info("test : {}", i);
     Arrays.sort(inputArray);
     log.info("result : {}", inputArray);
+    log.info("binary search : {}", binarySearch2(inputArray, 1));
 
   }
   int binarySearch2(int[] inputArray, int target){
     int first = 0;
     int last = inputArray.length -1;
     int mid = inputArray.length/2;
+    boolean loof = true;
 
-    while(true){
+    while(loof){
       if(inputArray[mid] > target){
-        mid =
-
+        last = mid;
+        mid = (first + last)/2 -1 ;
       }else if(inputArray[mid] < target){
-
+        first = mid;
+        mid = (inputArray.length + mid)/2;
       }else{
-
+        return mid;
       }
     }
+    return -1;
   }
 
   int binarySearch1(int key, int low, int high) {
