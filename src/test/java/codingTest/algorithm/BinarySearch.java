@@ -22,7 +22,11 @@ public class BinarySearch {
 //    log.info("test : {}", i);
     Arrays.sort(inputArray);
     log.info("result : {}", inputArray);
-    log.info("binary search : {}", binarySearch2(inputArray, 1));
+    log.info("binary search : {}", binarySearch2(inputArray, 26));
+
+    boolean why = false;
+    testBollean(why);
+    log.info("result : {}", why);
 
   }
   int binarySearch2(int[] inputArray, int target){
@@ -34,15 +38,21 @@ public class BinarySearch {
     while(loof){
       if(inputArray[mid] > target){
         last = mid;
-        mid = (first + last)/2 -1 ;
+        mid = (first + last)/2;
       }else if(inputArray[mid] < target){
         first = mid;
-        mid = (inputArray.length + mid)/2;
+        mid = (last + mid)/2;
       }else{
         return mid;
       }
+      if( first >= mid)
+        loof = false;
     }
     return -1;
+  }
+
+  private void testBollean(boolean why){
+    why = true;
   }
 
   int binarySearch1(int key, int low, int high) {
