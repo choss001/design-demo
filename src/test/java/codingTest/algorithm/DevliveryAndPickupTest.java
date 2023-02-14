@@ -1,54 +1,60 @@
 package codingTest.algorithm;
 
 public class DevliveryAndPickupTest {
-    private int cap;
+       private int cap;
     private int[] deliveries;
     private int[] pickups;
     private long answer;
+    boolean endDeliver = false;
+    boolean endPickup = false;
     public long solution(int cap, int n, int[] deliveries, int[] pickups) {
         this.cap = cap;
         this.deliveries = deliveries;
         this.pickups = pickups;
-
+        
         goStart();
         return answer;
     }
     private void goStart(){
         boolean end = true;
         while(end){
-            int deliverLength = calLength(deliveries);
-            int pickupLength = calLength(pickups);
+            int deliverLength = calLength(deliveries, "deliver");
+            int pickupLength = calLength(pickups, "pickup");
             answer += Math.max(deliverLength, pickupLength) * 2;
-            end = isNotFinish();
+            if(endDeliver && endPickup)
+                end = false;
         }
     }
-
-    private boolean isNotFinish(){
-        for(int i =0; i < deliveries.length; i++){
-            if(0 < deliveries[i] || 0 < pickups[i])
-                return true;
-        }
-        return false;
-    }
-
-    private int calLength(int[] targetArray){
+    
+    private int calLength(int[] targetArray, String type){
         int tempCap = cap;
         int tempLastPoint = 0;
-        for(int i =0; i < targetArray.length; i++){
+//      if(type.equals("deliver") && endDeliver)
+//          return 0;
+//      else if(type.equals("pickup") && endPickup)
+//          return 0;
+        
+        for(int i =targetArray.length - 1; i >= 0; i--){
             int delTemp = targetArray[i];
-            if(delTemp != 0)
-                tempLastPoint = i+1;
+            if(targetArray[i] != 0)
+                tempLastPoint = Math.max(tempLastPoint, i + 1);
             targetArray[i] = calMinus(delTemp, tempCap);
             tempCap = calMinus(tempCap, delTemp);
             if(tempCap ==0)
-                return i+1;
-            if(i == targetArray.length -1)
-                return i;
+                return tempLastPoint;
+            if(i == 0){
+                if(type.equals("deliver"))
+                    endDeliver = true;
+                else
+                    endPickup  = true;
+                    
+                return tempLastPoint;
+            }
+            
         }
-        System.out.println("why : " + tempCap);
         return 9999999;
     }
-
+    
     private int calMinus(int target, int component){
         if(target > component)
             return target-component;
