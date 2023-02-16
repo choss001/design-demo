@@ -57,7 +57,6 @@ public class _157PJongManBook {
         taken[firstFree] = taken[pairWith] = false;
       }
     }
-
     return ret;
   }
 
