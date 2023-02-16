@@ -57,13 +57,14 @@ public class _157PJongManBook {
         taken[firstFree] = taken[pairWith] = false;
       }
     }
+
     return ret;
   }
 
 
   @Test
   void test2(){
-    
+
   }
 
   public static long solution(int cap, int n, int[] deliveries, int[] pickups) {
