@@ -13,14 +13,14 @@ public class DevliveryAndPickupTest {
         this.pickups = pickups;
         
         goStart();
-        return answer;
+        return answer * 2;
     }
     private void goStart(){
         boolean end = true;
         while(end){
             int deliverLength = calLength(deliveries, "deliver");
             int pickupLength = calLength(pickups, "pickup");
-            answer += Math.max(deliverLength, pickupLength) * 2;
+            answer += Math.max(deliverLength, pickupLength);
             if(endDeliver && endPickup)
                 end = false;
         }
@@ -29,11 +29,7 @@ public class DevliveryAndPickupTest {
     private int calLength(int[] targetArray, String type){
         int tempCap = cap;
         int tempLastPoint = 0;
-//      if(type.equals("deliver") && endDeliver)
-//          return 0;
-//      else if(type.equals("pickup") && endPickup)
-//          return 0;
-        
+
         for(int i =targetArray.length - 1; i >= 0; i--){
             int delTemp = targetArray[i];
             if(targetArray[i] != 0)
