@@ -3,6 +3,8 @@ package codingTest.algorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+
 @Slf4j
 public class DevliveryAndPickupTest {
   private int cap;
@@ -23,7 +25,7 @@ public class DevliveryAndPickupTest {
 
   @Test
   void test1() {
-    long l = solution2(4, 5, new int[]{1, 0, 3, 1, 2}, new int[]{1, 0, 2, 0, 1, 0, 2});
+    long l = solution2(4, 5, new int[]{1, 0, 3, 1, 2}, new int[]{1, 0, 2, 0, 1});
     log.info("result : {}", l);
   }
 
@@ -70,12 +72,15 @@ public class DevliveryAndPickupTest {
       return 0;
   }
 
+
+
   private long solution2(int cap, int n, int[] deliveries, int[] pickups){
     long answer = 0;
     int start = -1;
     int idx = -1;
     int give = 0;
     int get = 0;
+    Integer[] test = new Integer[5];
     for(int i = n -1 ; i>=0; i--){
       if(deliveries[i] != 0 || pickups[i] != 0)  {
         int cnt =0;
