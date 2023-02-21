@@ -1,5 +1,9 @@
 package codingTest.algorithm;
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+
+@Slf4j
 public class DevliveryAndPickupTest {
        private int cap;
     private int[] deliveries;
@@ -60,6 +64,12 @@ public class DevliveryAndPickupTest {
             return target-component;
         else
             return 0;
+    }
+
+    @Test
+    void test2(){
+        long l = solution2(2, 7, new int[]{1, 0, 2, 0, 1, 0, 2}, new int[]{0, 2, 0, 1, 0, 2, 0});
+        log.info("result : {}", l);
     }
 
     public static long solution2(int cap, int n, int[] deliveries, int[] pickups) {
