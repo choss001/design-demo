@@ -29,7 +29,7 @@ public class _1926 {
 
     }
 
-    private void recursive(){
+    private void recursive(int inheritedY, int inheritedX){
         int curX = 0;
         int curY = 0;
         for(int i = 0; i < 4; i++){
@@ -39,8 +39,9 @@ public class _1926 {
 
         for(int i =0; i< input.length; i++ ){
             for (int j = 0; j < input[0].length; j++) {
-                
-
+                if(input[curY][curX] == 1 && !cache[curY][curX] ){
+                    recursive(curX, curY);
+                }
             }
         }
     }
