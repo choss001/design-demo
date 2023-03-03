@@ -55,6 +55,7 @@ public class _1926 {
         }
     }
 
+    //테스트입니다.
     private void findBlock(int passedY, int passedX, List<int[]> tempArrayList) {
         int curX = 0;
         int curY = 0;
